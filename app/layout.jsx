@@ -1,0 +1,18 @@
+import {Inter} from "next/font/google"
+import "./globals.css";
+const inter = Inter()
+export const metadata = {
+  title: "App to manage your repair item from your phone",
+  description: "this is just a portfolio by devano yudhistira",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.className} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
