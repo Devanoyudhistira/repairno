@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google"
 import "./globals.css";
+import Footnav from "@/components/footnav";
 import { ThemeProvider } from "@/components/themeprovider";
 const inter = Inter()
 export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           enableTransitionOnChange >
           {children}
         </ThemeProvider>
+        <Footnav />
       </body>
     </html>
   );
