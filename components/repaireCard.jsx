@@ -8,22 +8,23 @@ import { FileWarning } from "lucide-react";
 import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function Repaircard() {
+export default function Repaircard({itemname,username,id,problem,status}) {
+    console.log(username)
     return <Card variant={"primary"} className={`px-2 p-0 flex flex-row items-start border border-foreground gap-2`} size="lg" >
         <Image alt="nama barang" className="object-cover w-42 h-28 object-center" width={500} height={500} src={"/image/laptop1.jpg"} />
         <div className="w-full h-full  justify-between flex flex-col" >
             <CardHeader className={`flex-row flex items-start w-full gap-3 px-2  justify-between`} >
                 <div className="gap-0 " >
-                    <CardTitle className={`text-md m-0  shrink-0 font-semibold`} > acer aspire e1 </CardTitle>
+                    <CardTitle className={`text-md m-0  shrink-0 font-semibold`} > {itemname} </CardTitle>
                     <CardDescription className={`font-medium text-xs text-black`} >
-                        <h1> atas nama: Devano yudhistira </h1>
-                        <h2 className="text-foreground font-bold mt-0.5" > keluhan:ganti ram </h2>
+                        <h1> atas nama: {username} </h1>
+                        <h2 className="text-foreground font-bold mt-0.5" > keluhan:{problem} </h2>
                     </CardDescription>
                 </div>
             </CardHeader>
             <CardFooter className={`p-0 py-1 w-full justify-self-end self-end flex flex-row items-center gap-0 justify-between font-bold text-warning `} >
                 <CardAction >
-                    <Link href={"/20"} >
+                    <Link href={`/${id}`} >
                         <Button size="xs" variant="link" className={`flex gap-1 lg:mt-0 items-center`} >
                             lihat barang <ArrowRight />
                         </Button>
