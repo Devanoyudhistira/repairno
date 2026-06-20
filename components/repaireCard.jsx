@@ -8,8 +8,7 @@ import { FileWarning } from "lucide-react";
 import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function Repaircard({itemname,username,id,problem,status}) {
-    console.log(username)
+export default function Repaircard({itemname,username,id,problem,status}) {    
     return <Card variant={"primary"} className={`px-2 p-0 flex flex-row items-start border border-foreground gap-2`} size="lg" >
         <Image alt="nama barang" className="object-cover w-42 h-28 object-center" width={500} height={500} src={"/image/laptop1.jpg"} />
         <div className="w-full h-full  justify-between flex flex-col" >
@@ -17,7 +16,7 @@ export default function Repaircard({itemname,username,id,problem,status}) {
                 <div className="gap-0 " >
                     <CardTitle className={`text-md m-0  shrink-0 font-semibold`} > {itemname} </CardTitle>
                     <CardDescription className={`font-medium text-xs text-black`} >
-                        <h1> atas nama: {username} </h1>
+                        <h1 className="text-foreground" > atas nama: {username} </h1>
                         <h2 className="text-foreground font-bold mt-0.5" > keluhan:{problem} </h2>
                     </CardDescription>
                 </div>

@@ -11,8 +11,7 @@ export default async function Page({params}) {
 
     const {id} = await params
 
-    const {data,error} = await supabase.from("repaired-item").select("*").eq("id",id).single()
-    console.log(data)
+    const {data,error} = await supabase.from("repaired-item").select("*").eq("id",id).single()    
     return (
         <main className="w-screen min-h-full flex-col items-center pb-4 " >
             <header className="w-full px-2  " >

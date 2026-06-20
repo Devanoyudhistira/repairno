@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import Repaircard from "@/components/repaireCard";
 import { Button } from "@/components/ui/button";
 import supabase from "@/supabase/supabase";
@@ -8,14 +9,10 @@ import { ArrowBigDownDash } from "lucide-react";
 
 
 export default async function Home() {
-  const {data,error} = await supabase.from("repaired-item").select("*")
-  console.log(data)
-  console.log(error)
+  const {data,error} = await supabase.from("repaired-item").select("*")  
   return (
     <main className="w-screen">
-      <nav className="w-full h-14 border-primary border-b-2 flex items-center px-3" >
-        <h1 className="text-primary font-semibold text-xl" > Repair-no </h1>
-      </nav>
+      <Navbar/>      
       <div className="grid w-full grid-cols-1 gap-5 px-2 mt-3 md:grid-cols-2 lg:grid-cols-3" >
         {data.map(e => 
         <Repaircard id={e.id} itemname={e.item_name} problem={e.problem} username={e.user_name.nama} key={e.id} />

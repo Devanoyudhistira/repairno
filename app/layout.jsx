@@ -1,5 +1,6 @@
-import {Inter} from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css";
+import { ThemeProvider } from "@/components/themeprovider";
 const inter = Inter()
 export const metadata = {
   title: "App to manage your repair item from your phone",
@@ -10,9 +11,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.className} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+      className={`${inter.className} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class"
+          defaultTheme="light"
+          enableSystem
+          enableTransitionOnChange >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
