@@ -1,4 +1,5 @@
 import Datecard from "@/components/datecard";
+import Navbarback from "@/components/navbarwithback";
 import Specdesk from "@/components/specdesc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +15,7 @@ export default async function Page({params}) {
     const {data,error} = await supabase.from("repaired-item").select("*").eq("id",id).single()    
     return (
         <main className="w-screen min-h-full flex-col items-center pb-4 " >
+            <Navbarback backtarget={"/"} />
             <header className="w-full px-2  " >
                 <Card size="lg" className={`mt-3 flex flex-col lg:flex-row py-0 gap-0`} >
                     <CardHeader className={`p-0 lg:w-180 w-full h-full`} >
@@ -23,7 +25,7 @@ export default async function Page({params}) {
                         <CardTitle className="text-xl lg:text-2xl capitalize mt-2 font-semibold px-2" > {data.item_name} </CardTitle>
                         <h2 className="text-md font-medium lg:text-xl px-2" > atas nama: <span className="capitalize" > {data.user_name.nama} </span> </h2>
                         <div className="w-full px-2 flex flex-col lg:mt-1 mt-4 items-start" >
-                            <h3 className="text-gray-600 font-semibold lg:text-xl text-md" > keluhan </h3>
+                            <h3 className="text-foreground font-semibold lg:text-xl text-md" > keluhan </h3>
                             <h1 className="text-primary font-bold text-md lg:text-xl " > {data.problem} </h1>
                         </div>
                     </CardContent>
