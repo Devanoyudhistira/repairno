@@ -8,7 +8,7 @@ export default async function Page(){
         <Navbar/>
         <article className="w-full px-3 grid gap-x-2 gap-y-3 mt-2 grid-cols-2 lg:grid-cols-4 md:grid-cols-3" >
             {data.map(e => 
-            <Productcard key={e.id} productname={e.name} image={e.gambar} harga={e.price} />        
+            <Productcard id={e.id} key={e.id} productname={e.name} image={e.gambar} harga={e.price} />        
             )}
         </article>        
     </main>

@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${inter.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col pb-20 ">
         <ThemeProvider attribute="class"
           defaultTheme="light"
           enableSystem
