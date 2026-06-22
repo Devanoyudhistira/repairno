@@ -12,7 +12,7 @@ import { Spinner } from "./ui/spinner";
 
 export default function Formcomponent({ actionlogin }) {
     const [showpassword, setshowpassword] = useState(false)
-    const [state, action, pending] = useActionState(actionlogin, null)
+    const [state, action, pending] = useActionState(actionlogin, null)    
     return (
         <form className="w-full px-23 flex flex-col items-center " action={action}  >
             <FieldGroup className={` p-0 w-screen h-80 text-left gap-2 px-3`} >
@@ -20,12 +20,12 @@ export default function Formcomponent({ actionlogin }) {
                 <FieldDescription className={`-mt-4 text-md text-center font-medium`} > Silahkan gunakan akun admin anda </FieldDescription>
                 <Field className={`gap-1`} >
                     <FieldLabel className={`text-md font-semibold`} htmlFor="username" > Username </FieldLabel>
-                    <Input className={`text-md`} id="username" type={"text"} placeholder="ketik usernama anda " />
+                    <Input name={`username`} className={`text-md`} id="username" type={"email"} placeholder="ketik usernama anda " />
                 </Field>
                 <Field className={`mt-2 gap-1 w-full`} >
                     <FieldLabel htmlFor="password" > Password </FieldLabel>
                     <div className="flex gap-1 items-center" >
-                        <Input className={`py-2 w-full`} id="password" type={showpassword ? "text" : "password"} placeholder="ketik password anda " />
+                        <Input name={`password`} className={`py-2 w-full`} id="password" type={showpassword ? "text" : "password"} placeholder="ketik password anda " />
                         <Button type={`button`} size="icon" variant="outline" onClick={() => setshowpassword(!showpassword)} >
                             {showpassword ? <EyeClosed /> : <Eye />}
                         </Button>

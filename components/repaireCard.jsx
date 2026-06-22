@@ -7,6 +7,7 @@ import { FileExclamationPoint } from "lucide-react";
 import { FileWarning } from "lucide-react";
 import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "./ui/badge";
 
 export default function Repaircard({itemname,username,id,problem,status}) {    
     return <Card variant={"primary"} className={`px-2 p-0 flex flex-row items-start border border-foreground gap-2`} size="lg" >
@@ -30,7 +31,7 @@ export default function Repaircard({itemname,username,id,problem,status}) {
                     </Link>
                 </CardAction>
                 <div className={`p-0 px-2 flex items-center justify-end w-auto text-right`} >
-                    <h1 className=" flex items-center gap-1 " > <TriangleAlertIcon /> prosess </h1>
+                    <Badge variant="warning" > <TriangleAlertIcon /> prosess </Badge>
                 </div>
             </CardFooter>
         </div>

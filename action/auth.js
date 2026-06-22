@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/supabase/server";
+import { redirect } from "next/navigation";
 
 export async function login(prev, formdata) {
   const supabaseauth = await createClient();
@@ -10,11 +11,11 @@ export async function login(prev, formdata) {
     email: username,
     password: password,
   });
-  if (error) {
+  if (error) {    
     return {
       error: true,
-      message: "identitas tidak dikenal silahkan coba lagi",
+      message: "identitas tidak dikenal silahkan coba lagi",      
     };
   }
-  return { error: false, message: null };
+  redirect("/admin") ;
 }
