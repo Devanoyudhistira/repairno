@@ -13,14 +13,14 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${inter.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col pb-20 ">
+      <body className="min-h-full overflow-x-hidden flex flex-col pb-20 ">
         <ThemeProvider attribute="class"
           defaultTheme="light"
           enableSystem
           enableTransitionOnChange >
           {children}
+          <Footnav />
         </ThemeProvider>
-        <Footnav />
       </body>
     </html>
   );
