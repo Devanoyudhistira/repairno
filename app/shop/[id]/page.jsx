@@ -32,10 +32,9 @@ export default async function  Page({params}){
                         {data.description}
                     </CardDescription>
                     <CardAction className={`p-0 w-full`} >
-                        <Button className={`text-primary-foreground w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
+                        <Button className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
                     </CardAction>
                 </Card>
-
         </main>
 
     )
