@@ -31,8 +31,8 @@ export default function Formcomponent({ actionlogin }) {
                         </Button>
                     </div>
                 </Field>
-                {state?.error && <FieldError> {state?.message} </FieldError>}
-                <Button disabled={pending} variant={!pending ? "default" : "outline"} className={`w-full mt-3 text-xl font-semibold`} size="lg" >
+                  <FieldError className={"text-md text-center"} errors={state?.error} > {state?.message} </FieldError>
+                <Button disabled={pending} variant={!pending ? "default" : "outline"} className={`w-full mt-3 text-2xl font-semibold`} size="lg" >
                     {!pending ?  "Login" : <span className="flex items-center gap-1 " > <Spinner className={`size-6`} /> loading</span> }
                 </Button>
             </FieldGroup>
