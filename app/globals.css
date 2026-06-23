@@ -51,6 +51,13 @@
   --color-success:oklch(0.87 0.14 154);
 }
 
+.dahlah{
+  @apply col-span-1 md:col-span-2 lg:col-span-3;
+}
+.dahlah2{
+  @apply col-span-4 md:col-span-5 lg:col-span-6;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
