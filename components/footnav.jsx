@@ -9,7 +9,7 @@ import Link from "next/link"
 export default function Footnav() {
     const pathnow = usePathname()   
     const isshop = pathnow.split("/")    
-    return !isshop.includes("login") || !isshop.includes("admin")  && <footer className="fixed bottom-0 left-0 gap-0 flex w-full bg-primary-foreground h-13" >
+    return !isshop.includes("login") && !isshop.includes("admin")  && <footer className="fixed bottom-0 left-0 gap-0 flex w-full bg-primary-foreground h-13" >
         <Link href={"/shop"} className="w-[50%] h-full" >
             <Button size="xl" variant={isshop.includes("shop") ? `secondary` : "link"} className={`w-full m-0 h-full p-0 flex items-center justify-center ${isshop.includes("shop") ? "text-accent" : "text-primary"}`} >
                 <ShoppingCart size={50} className="size-7" />
