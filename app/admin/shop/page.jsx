@@ -6,7 +6,7 @@ import supabase from "@/supabase/supabase";
 import { Plus } from "lucide-react";
 
 export default async function Page({ }) {
-    const { data, error } = await supabase.from("shop").select("*")
+    const { data, error } = await supabase.from("shop").select("*").order("created_at", { ascending: false });
     return (<main>
         <Navbar />
         <div className="mt-5" >         
