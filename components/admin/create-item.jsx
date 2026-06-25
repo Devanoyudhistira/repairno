@@ -4,24 +4,27 @@ import { Field, FieldGroup, FieldLabel, FieldLegend } from "../ui/field";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import Imageinput from "./imageinput";
 import { Button } from "../ui/button";
 import { ButtonGroup } from "../ui/button-group";
 import { Plus } from "lucide-react";
+import { createitem } from "@/action/shopcrud";
+import { Spinner } from "../ui/spinner";
 
 
-export default function Createitem() {
+export default function Createitem({ }) {
     const [text, settext] = useState()
     const [title, settitle] = useState()
     const [image, setimage] = useState()
     const [showpreview, setshowpreview] = useState(false)
-    return <form action="" cl >
+    const [state, action, pending] = useActionState(createitem)
+    return <form action={action} >
         <FieldGroup>
             <FieldLegend className={`text-2xl m-0 font-semibold`} > Buat dagangan baru </FieldLegend>
-            <Field className={`-mt-4  flex flex-col  lg:flex-row p-0 `} >
+            <Field className={`-mt-4 flex flex-col lg:flex-row p-0 `} >
                 <Imageinput change={image} setchange={setimage} />
-                <div className="w-full -ml-6 lg:-ml-115 " >
+                <div className="w-full -ml-6 lg:-ml-100 gap-1 flex flex-col " >
                     <FieldLabel htmlFor={"nama"} > Nama Barang </FieldLabel>
                     <Input name="nama" id="nama" placeholder="tulis nama dagangan anda " type={"text"} />
                     <FieldLabel htmlFor={"deskripsi"} > Deskripsi barang </FieldLabel>
@@ -33,11 +36,14 @@ export default function Createitem() {
                             customInput={InputGroupInput}
                             thousandSeparator="."
                             decimalSeparator=","
+                            name="harga"
+                            id="harga"
                         />
                     </InputGroup>
                 </div>
             </Field>
-            <Button size="lg" variant="default" className={`text-2xl self-center w-full  flex gap-1 mr-10`}> <Plus className="size-8" /> Buat</Button>
+            <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full  flex gap-1 mr-10`}>
+                {pending ? <span className="flex gap-1 items-center " > <Spinner className={`size-8`} /> Loading </span> : <span className="flex gap-1" > <Plus className="size-8" /> Buat </span>} </Button>
         </FieldGroup>
         <div className="w-full self-center flex items-center justify-center gap-2" >
         </div>

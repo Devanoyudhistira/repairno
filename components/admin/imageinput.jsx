@@ -45,7 +45,7 @@ export default function Imageinput({ setchange, change }) {
                     ) : (
                         <>
                             <CameraIcon size={35} />
-                            <FieldLabel>pilih thumbnail anda disini</FieldLabel>
+                            <FieldLabel>pilih gambar barang anda disini</FieldLabel>
                         </>
                     )}
                 </div>
