@@ -7,8 +7,7 @@ import { Plus } from "lucide-react";
 
 export default async function Page({ }) {
     const { data, error } = await supabase.from("shop").select("*").order("created_at", { ascending: false });
-    return (<main>
-        <Navbar />
+    return (<main className="w-full" >        
         <div className="mt-5" >         
             <Productcontainer data={data} />
         </div>
