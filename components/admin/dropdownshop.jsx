@@ -8,12 +8,15 @@ import { Pencil } from "lucide-react";
 import { TrashIcon } from "lucide-react";
 import Drawerstock from "./drawerstock";
 import { DrawerTrigger } from "../ui/drawer";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { Pen } from "lucide-react";
+import Deletealert from "./deletealert";
 
-export default function Dropdownshop({id,initialstock}) {
+
+export default function Dropdownshop({ id, initialstock,deleteaction }) {
     const [openrestock, setopenrestock] = useState(false)
     const [newstock, setnewstock] = useState(initialstock)
+    const [deletealert, setdeletealert] = useState(false)    
     return <>
         <DropdownMenu>
             <DropdownMenuTrigger asChild >
@@ -29,11 +32,12 @@ export default function Dropdownshop({id,initialstock}) {
                 <DropdownMenuItem onClick={() => setopenrestock(true)} >
                     <span className="flex items-center gap-1" > <Pen />  ubah stock </span>
                 </DropdownMenuItem>
-                <DropdownMenuItem variant="destructive" >
-                    <TrashIcon /> <span> hapus barang </span>
+                <DropdownMenuItem variant="destructive" onClick={() => setdeletealert(true)} >
+                    <TrashIcon />  hapus barang
                 </DropdownMenuItem>
             </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> 
+        <Deletealert deleteaction={deleteaction} opencondition={deletealert} setopencondition={setdeletealert} id={id} deskripsi={`tindakan ini akan menghapus barang dagangan anda anda yakin ?.`} title={"hapus barang ?"} />       
         <Drawerstock id={id} newstock={newstock} setnewstock={setnewstock} condition={openrestock} setcondition={setopenrestock} />
     </>
 }

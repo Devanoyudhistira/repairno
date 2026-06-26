@@ -25,6 +25,16 @@ export async function updatename(id, prev, formdata) {
     .update({ name: newname })
     .eq("id", id);
 }
+export async function deleteitem(id, prev, formdata) {
+  const newname = formdata.get("newname");
+  const { error } = await supabase
+    .from("shop")
+    .delete()    
+    .eq("id", id);    
+    revalidatePath("/admin/shop")
+    if(error) return{ message:"penghapusan gagal",error:true }
+    return{ message:"penghapusan berhasil",error:false }
+}
 export async function updateprice(id, prev, formdata) {
   const newprice = formdata.get("newprice");
   const { error } = await supabase
