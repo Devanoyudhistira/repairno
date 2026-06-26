@@ -17,7 +17,7 @@ export default async function Layout({ children }) {
             <div className="w-screen lg:flex items-center gap-3" >
                 <Sidebarnav />
                 <div className="col-span-2 w-full px-2 lg:px-0 lg:w-[90%]" >
-                    <SidebarTrigger />
+                   <span className="lg:hidden" > <SidebarTrigger /> </span>
                     {children}
                 </div>
             </div>

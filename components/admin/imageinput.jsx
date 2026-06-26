@@ -30,7 +30,7 @@ export default function Imageinput({ setchange, change }) {
         <>
             <Label
                 htmlFor="gambar">
-                <div className="text-xl bg-primary-foreground border-dashed shadow-black/50 border-2 rounded-md font-bold w-full lg:w-1/2 flex flex-col gap-2 items-center justify-center -ml-6 lg:ml-0 h-60 overflow-hidden relative">                    
+                <div className="text-xl bg-primary-foreground border-dashed shadow-black/50 border-2 rounded-md font-bold w-full lg:w-1/2 flex flex-col gap-2 items-center justify-center  lg:ml-0 h-60 overflow-hidden relative">                    
                     {change ? (
                         <>
                             <Image width={500} height={500} src={change} alt="preview" className="w-full h-full object-cover object-center rounded-md"

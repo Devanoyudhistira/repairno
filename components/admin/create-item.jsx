@@ -24,7 +24,7 @@ export default function Createitem({ }) {
             <FieldLegend className={`text-2xl m-0 font-semibold`} > Buat dagangan baru </FieldLegend>
             <Field className={`-mt-4 flex flex-col lg:flex-row p-0 `} >
                 <Imageinput change={image} setchange={setimage} />
-                <div className="w-full -ml-6 lg:-ml-100 gap-1 flex flex-col " >
+                <div className="w-full lg:-ml-100 gap-1 flex flex-col " >
                     <FieldLabel htmlFor={"nama"} > Nama Barang </FieldLabel>
                     <Input name="nama" id="nama" placeholder="tulis nama dagangan anda " type={"text"} />
                     <FieldLabel htmlFor={"deskripsi"} > Deskripsi barang </FieldLabel>
@@ -42,7 +42,7 @@ export default function Createitem({ }) {
                     </InputGroup>
                 </div>
             </Field>
-            <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full  flex gap-1 mr-10`}>
+            <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full ml-10 lg:ml-0 flex gap-1 mr-10`}>
                 {pending ? <span className="flex gap-1 items-center " > <Spinner className={`size-8`} /> Loading </span> : <span className="flex gap-1" > <Plus className="size-8" /> Buat </span>} </Button>
         </FieldGroup>
         <div className="w-full self-center flex items-center justify-center gap-2" >
