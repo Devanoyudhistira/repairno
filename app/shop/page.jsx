@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar";
 import Productcard from "@/components/productcard";
 import supabase from "@/supabase/supabase";
+export const dynamic = "force-dynamic";
 
 export default async function Page(){
     const {data,error} = await supabase.from("shop").select("*")    

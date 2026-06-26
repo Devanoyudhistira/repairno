@@ -6,6 +6,7 @@ import { Dot } from "lucide-react";
 import { ArrowUp } from "lucide-react";
 import { ArrowDown } from "lucide-react";
 import { ArrowBigDownDash } from "lucide-react";
+export const dynamic = "force-dynamic";
 
 
 export default async function Home() {

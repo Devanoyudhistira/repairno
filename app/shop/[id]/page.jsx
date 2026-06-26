@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import convertToMoney from "@/function/convert"
+import imageurl from "@/lib/imageurl"
 import supabase from "@/supabase/supabase"
 import Image from "next/image"
 
@@ -12,8 +13,8 @@ export default async function  Page({params}){
     return (
         <main className={`w-full flex flex-col items-center`} >
             <Navbar singlepage={true} addcontext={"Product detail"} />
-            <div className="flex flex-col mt-3 " >  
-                <Image src={`/image/${data.gambar}`} alt={data.name} width={700} height={700} loading="eager"className="object-cover px-6 object-center w-full h-80" />
+            <div className="flex flex-col w-full mt-3 " >  
+                <Image src={imageurl(data.gambar)} alt={data.name} width={700} height={700} loading="eager"className="object-cover px-6 object-center w-full h-50" />
             </div>
                 <Card className={`p-2 border-transparent border-0 bg-transparent border-none mt-2 w-[94%]`} >
                     <CardHeader className={`w-full font-semibold border-transparent border-none border-0 text-xl p-0 flex justify-between`} > 

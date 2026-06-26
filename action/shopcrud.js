@@ -14,6 +14,7 @@ export async function restock(id, jumlah, prev, formdata, ...args) {
     return { error: true, message: "perubahan gagal" };
   }
   revalidatePath("/admin/shop");
+  revalidatePath("/shop");
   return { success: true, message: "perubahan berhasil" };
 }
 // update nama
@@ -25,6 +26,7 @@ export async function updatename(id, prev, formdata) {
     .eq("id", id);
 
   revalidatePath("/admin/shop");
+  revalidatePath("/shop");
   if (error) return { message: "perubahan nama gagal", error: true };
   return { message: "perubahan nama berhasil", success: true};
 }
@@ -33,6 +35,7 @@ export async function deleteitem(id, prev, formdata) {
   const newname = formdata.get("newname");
   const { error } = await supabase.from("shop").delete().eq("id", id);
   revalidatePath("/admin/shop");
+  revalidatePath("/shop");
   if (error) return { message: "penghapusan gagal", error: true };
   return { message: "penghapusan berhasil", error: false };
 }
@@ -43,6 +46,7 @@ export async function updateprice(id, prev, formdata) {
     .update({ price: newprice })
     .eq("id", id);
   revalidatePath("/admin/shop");
+  revalidatePath("/shop");
   if (error) return { message: "perubahan harga gagal", error: true };
   return { message: "perubahan harga berhasil", success: true };
 }
@@ -65,6 +69,8 @@ export async function createitem(prev, formdata) {
     description,
     gambar: "shop/" + finalname,
   });
-
   const upload = await supabaseforimage.upload(`shop/${finalname}`, image);
+  revalidatePath("/admin/shop");
+  revalidatePath("/admin/shop/create");
+  revalidatePath("/shop");
 }
