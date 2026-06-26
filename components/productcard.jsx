@@ -27,7 +27,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
                 </CardFooter>
                 <CardFooter className={`w-full px-2 flex items-center justify-between`} >
                     <h6 className="text-md font-mormal text-primary" > stock:{stock} </h6>
-                    {admin ? <Dropdownshop deleteaction={deleteaction} initialstock={stock} id={id} />
+                    {admin ? <Dropdownshop deleteaction={deleteaction} initialstock={stock} initialname={productname} initialprice={harga} id={id} />
                         : <Link href={`/shop/${id}`} className="self-end" > <Button size="icon" variant="outline" className={`border-secondary`} > <ArrowUpRight /> </Button> </Link>}
                 </CardFooter>
             </CardContent>

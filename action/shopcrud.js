@@ -5,9 +5,7 @@ import supabaseforimage from "@/supabase/supabaseforimage";
 import { revalidatePath } from "next/cache";
 
 export async function restock(id, jumlah, prev, formdata, ...args) {
-  console.log(jumlah);
-  // console.log(id)
-  // console.log(args)
+  console.log(jumlah);  
   const { error } = await supabase
     .from("shop")
     .update({ stock: jumlah })
@@ -18,34 +16,40 @@ export async function restock(id, jumlah, prev, formdata, ...args) {
   revalidatePath("/admin/shop");
   return { success: true, message: "perubahan berhasil" };
 }
+// update nama
 export async function updatename(id, prev, formdata) {
   const newname = formdata.get("newname");
   const { error } = await supabase
     .from("shop")
     .update({ name: newname })
     .eq("id", id);
+
+  revalidatePath("/admin/shop");
+  if (error) return { message: "perubahan nama gagal", error: true };
+  return { message: "perubahan nama berhasil", success: true};
 }
+
 export async function deleteitem(id, prev, formdata) {
   const newname = formdata.get("newname");
-  const { error } = await supabase
-    .from("shop")
-    .delete()    
-    .eq("id", id);    
-    revalidatePath("/admin/shop")
-    if(error) return{ message:"penghapusan gagal",error:true }
-    return{ message:"penghapusan berhasil",error:false }
+  const { error } = await supabase.from("shop").delete().eq("id", id);
+  revalidatePath("/admin/shop");
+  if (error) return { message: "penghapusan gagal", error: true };
+  return { message: "penghapusan berhasil", error: false };
 }
 export async function updateprice(id, prev, formdata) {
-  const newprice = formdata.get("newprice");
+  const newprice = Number(formdata.get("newprice").replace(/\./g, "")); 
   const { error } = await supabase
     .from("shop")
     .update({ price: newprice })
     .eq("id", id);
+  revalidatePath("/admin/shop");
+  if (error) return { message: "perubahan harga gagal", error: true };
+  return { message: "perubahan harga berhasil", success: true };
 }
 
 export async function createitem(prev, formdata) {
   const name = formdata.get("nama");
-  const harga = Number(formdata.get("harga").replace(/\./g, "")) ;  
+  const harga = Number(formdata.get("harga").replace(/\./g, ""));
   const image = formdata.get("gambar");
   const extension = image.name.split(".").at(-1);
   const finalname =
@@ -59,7 +63,7 @@ export async function createitem(prev, formdata) {
     name,
     price: harga,
     description,
-    gambar: "shop/"+finalname,
+    gambar: "shop/" + finalname,
   });
 
   const upload = await supabaseforimage.upload(`shop/${finalname}`, image);
