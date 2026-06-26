@@ -18,8 +18,7 @@ export default function RootLayout({ children }) {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange  >
-          <SidebarProvider>
-            <SidebarTrigger/>
+          <SidebarProvider>        
             <SidebarInset>
               <div className="flex bg-background">
                 <main className="" >
