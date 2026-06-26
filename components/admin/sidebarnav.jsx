@@ -20,7 +20,7 @@ import { Building } from "lucide-react";
 import Modetoggle from "../modetoggle";
 
 export default function Sidebarnav() {
-    return <Sidebar defaultOpen={false} collapsible="icon"  >
+    return <Sidebar defaultopen={false} collapsible="icon"  >
         <div className="w-full flex items-center justify-between" >
             <SidebarTrigger />
             <span className="group-data-[collapsible=icon]:hidden text-xl capitalize font-semibold" >

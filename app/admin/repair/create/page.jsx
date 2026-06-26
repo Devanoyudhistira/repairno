@@ -1,3 +1,8 @@
+import Createitem from "@/components/admin/create-item";
+import Createrepaireditem from "@/components/admin/create-item-repair";
+
 export default function Page(){
-    return <h1> ini untuk create new repair </h1>
+    return <main className="lg:mt-6" >
+        <Createrepaireditem  />
+        </main>
 }

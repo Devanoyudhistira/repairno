@@ -42,7 +42,7 @@ export default function Createitem({ }) {
                     </InputGroup>
                 </div>
             </Field>
-            <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full ml-10 lg:ml-0 flex gap-1 mr-10`}>
+            <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full ml-10 lg:ml-30 flex gap-1 mr-10`}>
                 {pending ? <span className="flex gap-1 items-center " > <Spinner className={`size-8`} /> Loading </span> : <span className="flex gap-1" > <Plus className="size-8" /> Buat </span>} </Button>
         </FieldGroup>
         <div className="w-full self-center flex items-center justify-center gap-2" >

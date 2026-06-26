@@ -16,7 +16,7 @@ export default async function Home() {
       <Navbar/>      
       <div className="grid w-full grid-cols-1 gap-5 px-2 mt-3 md:grid-cols-2 lg:grid-cols-3" >
         {data.map(e => 
-        <Repaircard id={e.id} itemname={e.item_name} problem={e.problem}  username={e.user_name.nama} key={e.id} />
+        <Repaircard id={e.id} itemname={e.item_name} problem={e.problem} status={e.status} image={e.image} username={e.user_name.nama} key={e.id} />
         )}
       </div>
     </main>

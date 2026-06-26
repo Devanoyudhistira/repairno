@@ -8,10 +8,20 @@ import { FileWarning } from "lucide-react";
 import { TriangleAlertIcon } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
+import imageurl from "@/lib/imageurl";
 
-export default function Repaircard({itemname,username,id,problem,status}) {    
+export default function Repaircard({ itemname, username, id, problem, status, image }) {
+    function statuscolor(status) {
+        if (status === "error") {
+            return "destructive"
+        }
+        else if (status === "success") {
+            return "success"
+        }
+        return "warning"
+    }
     return <Card variant={"primary"} className={`px-2 p-0 flex flex-row items-start border border-foreground gap-2`} size="lg" >
-        <Image alt="nama barang" className="object-cover w-42 h-28 object-center" width={500} height={500} src={"/image/laptop1.jpg"} />
+        <Image alt="nama barang" className="object-cover w-42 h-28 object-center" width={500} height={500} src={imageurl(image)} />
         <div className="w-full h-full  justify-between flex flex-col" >
             <CardHeader className={`flex-row flex items-start w-full gap-3 px-2  justify-between`} >
                 <div className="gap-0 " >
@@ -31,7 +41,7 @@ export default function Repaircard({itemname,username,id,problem,status}) {
                     </Link>
                 </CardAction>
                 <div className={`p-0 px-2 flex items-center justify-end w-auto text-right`} >
-                    <Badge variant="warning" > <TriangleAlertIcon /> prosess </Badge>
+                    <Badge variant={statuscolor(status)} > {status} </Badge>
                 </div>
             </CardFooter>
         </div>

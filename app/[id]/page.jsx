@@ -3,6 +3,7 @@ import Navbarback from "@/components/navbarwithback";
 import Specdesk from "@/components/specdesc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import imageurl from "@/lib/imageurl";
 import supabase from "@/supabase/supabase";
 import { CreditCard } from "lucide-react";
 import moment from "moment";
@@ -19,7 +20,7 @@ export default async function Page({params}) {
             <header className="w-full px-2  " >
                 <Card size="lg" className={`mt-3 flex flex-col lg:flex-row py-0 gap-0`} >
                     <CardHeader className={`p-0 lg:w-180 w-full h-full`} >
-                        <Image src={"/image/laptop1.jpg"} className="w-full h-full object-cover object-center" alt="gambar product" width={600} height={600} />
+                        <Image src={imageurl(data.image)} className="w-full h-full object-cover object-center" alt="gambar product" width={600} height={600} />
                     </CardHeader>
                     <CardContent className="w-full p-0 pb-2 flex-col " >
                         <CardTitle className="text-xl lg:text-2xl capitalize mt-2 font-semibold px-2" > {data.item_name} </CardTitle>
