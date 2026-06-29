@@ -8,7 +8,7 @@ export async function purchase(id, prev, formdata) {
   const email = formdata.get("customer-email");
   const paymentmethod = formdata.get("payment-method");
   const {data:shopitem,error:shoperror} = await supabase.from("shop").select("*").eq("id",id).single("")
-  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_PUBLIC_URL}/api/purchase`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/purchase`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
