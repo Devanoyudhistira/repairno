@@ -19,9 +19,9 @@ export default function Adminshopbutton({setgrid,grid}) {
             </Field>
             <FieldContent>
                 <ButtonGroup className={` self-end justify-self-end`} >
-                    <Button className={`lg:hidden`} onClick={e => setgrid("1")} size="icon" variant="outline" > <Square /> </Button>
+                    <Button onClick={e => setgrid("1")} size="icon" variant="outline" > <Square /> </Button>
                     <Button onClick={e => setgrid("2")} size="icon" variant="outline" > <Grid2X2 /> </Button>
-                    <Button className={"hidden lg:flex"} onClick={e => setgrid("3")} size="icon" variant="outline" > <Grid3X3 /> </Button>
+                    <Button  onClick={e => setgrid("3")} size="icon" variant="outline" > <Grid3X3 /> </Button>
                 </ButtonGroup>
             </FieldContent>
         </FieldGroup>
