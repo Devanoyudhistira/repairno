@@ -10,14 +10,15 @@ import Image from "next/image"
 
 export default async function Page({ params }) {
     const { id } = await params
-    const { data, error } = await supabase.from("shop").select("*").eq("id", id).single()    
+    const { data, error } = await supabase.from("shop").select("*").eq("id", id).single()          
+
     return (
         <main className={`w-full flex flex-col items-center`} >
             <Navbar singlepage={true} addcontext={"Product detail"} />
             <div className="flex flex-col w-full mt-3 " >
-                <Image src={imageurl(data.gambar)} alt={data.name} width={700} height={700} loading="eager" className="object-cover px-6 object-center w-full h-50" />
+                <Image src={imageurl(data.gambar)} alt={data.name} width={700} height={700} loading="eager" className="object-cover px-6 object-center w-full h-50 lg:h-120 rounded-xl" />
             </div>
-            <Card className={`p-2 border-transparent border-0 bg-transparent border-none mt-2 w-[94%]`} >
+            <Card className={`p-2 border-transparent border-0 bg-transparent border-none mt-2 w-[94%] lg:w-[98%] `} >
                 <CardHeader className={`w-full font-semibold border-transparent border-none border-0 text-xl p-0 flex justify-between`} >
                     <h1> {data.name} </h1>
                     <h1> {convertToMoney(data.price)} </h1>
