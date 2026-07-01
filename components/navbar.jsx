@@ -1,13 +1,18 @@
-"use client"
+
 
 import { ArrowLeft } from "lucide-react"
 import Modetoggle from "./modetoggle"
 import { Button } from "./ui/button"
 import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
+import { createClient } from "@/supabase/server"
+import Navadmin from "./admin/navadmin"
 
 
-export default function Navbar({ singlepage, addcontext }) {    
+export default async function Navbar({ singlepage, addcontext }) {    
+    const supabaseauth = await createClient()
+   const isadmin = await supabaseauth.auth.getSession()
+    const admin = isadmin.data.session
     return (<nav className="w-full h-14 border-primary border-b-2 flex items-center justify-between px-3" >
         <h1 className="text-primary font-semibold text-xl" > {singlepage ?
             <span className="flex items-center gap-2" >
@@ -16,6 +21,6 @@ export default function Navbar({ singlepage, addcontext }) {
                 </Link>  {addcontext} </span>
             :
             "Repair-no"}  </h1>
-        <Modetoggle />
+        {admin ? <Navadmin/>  : <Modetoggle />}
     </nav>)
 }

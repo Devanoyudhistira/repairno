@@ -10,9 +10,6 @@ export default async function Page({ }) {
     return (<main className="w-full" >        
         <div className="mt-5" >         
             <Productcontainer data={data} />
-        </div>
-        <Button className={`fixed bottom-5 text-primary border-2 border-accent-foreground rounded-full bg-accent right-3 px-3 py-1 size-14`} size="icon" variant="default" >
-            <Plus className="size-10" />
-        </Button>
+        </div>        
     </main>)
 }

@@ -18,6 +18,8 @@ import { WrenchIcon } from "lucide-react";
 import { Hammer } from "lucide-react";
 import { Building } from "lucide-react";
 import Modetoggle from "../modetoggle";
+import Link from "next/link";
+import { Building2 } from "lucide-react";
 
 export default function Sidebarnav() {
     return <Sidebar defaultopen={false} collapsible="icon"  >
@@ -27,7 +29,7 @@ export default function Sidebarnav() {
                 <Modetoggle />
             </span>
         </div>
-        <span  className="hidden group-data-[collapsible=icon]:block" >
+        <span className="hidden group-data-[collapsible=icon]:block" >
             <Modetoggle />
         </span>
         <SidebarHeader className={`text-2xl flex flex-row gap-2 items-center font-bold`} >
@@ -40,6 +42,9 @@ export default function Sidebarnav() {
                 </span>
             </SidebarMenu>
         </SidebarHeader>
+        <SidebarMenuItem className={"pl-4"} >
+            <Link href={"/"} className="flex flex-row gap-2 items-center" > <Building2 className="size-6" />  ke menu pelanggan </Link>
+        </SidebarMenuItem>
         <Sidebargroupitem labelname={"shop admin section"} Icon={ShoppingCart} pagename={"shop function"} >
             <Sidebarlink Icon={Building} name={"shop main page"} linktarget={"/admin/shop"} />
             <Sidebarlink Icon={Plus} name={"buat dagangan"} linktarget={"/admin/shop/create"} />

@@ -16,7 +16,7 @@ export default function Buyitem({id}) {
     const [state,payaction,pending] = useActionState(purchase.bind(null,id) ,null)
     return (
         <>
-            <Button onClick={() => setconfirmbuy(true)} className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
+            <Button onClick={() => setconfirmbuy(true)} variant="secondary" className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
             <Dialog onOpenChange={setconfirmbuy} open={confirmbuy} >
                 <DialogContent showCloseButton={false} >
                     <DialogHeader>
@@ -36,7 +36,7 @@ export default function Buyitem({id}) {
                             <Paymentmethod/>
                             <FieldSeparator className={"-mb-6 -mt-4"} />
                             <div className="w-full  items-center flex justify-center gap-2" >
-                                <Button type="submit" size="lg" className={` ${ pending ? "w-full" : "w-1/2" } `} disable={pending} variant={pending  ? "outline" : "success"} > {pending ? <span className="flex items-center gap-2" > <Spinner/> Loading </span> : "Confirm"} </Button>
+                                <Button type="submit" size="lg" className={`rounded-xl ${ pending ? "w-full" : "w-1/2" } `} disable={pending} variant={pending  ? "outline" : "success"} > {pending ? <span className="flex items-center gap-2" > <Spinner/> Loading </span> : "Confirm"} </Button>
                               {!pending && <Button type="button" onClick={() => setconfirmbuy(false)} size="lg" className={`w-1/2`} variant="destructive" > cancel </Button>}
                             </div>
                         </FieldGroup>
