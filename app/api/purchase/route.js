@@ -6,6 +6,7 @@ import { Resend } from "resend";
 import Templatemail from "@/components/email/template";
 import MailMessage from "nodemailer/lib/mailer/mail-message";
 import message from "@/function/mailfunction";
+import supabase from "@/supabase/supabase";
 
 export async function POST(request) {
   const body = await request.json();
@@ -44,10 +45,11 @@ export async function POST(request) {
     },
   });
 
-  const purchaseresult = await response
-  console.log(purchaseresult.va_numbers[0].va_number)
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
+  const purchaseresult = await response  
+  const {data:createpayment,error:paymenterror} = await supabase.from("shop-payment-history").insert({
+    customer_data:{name:customername,email:customeremail,phone_number:customerphone},
+    
+  })
   message(purchaseresult.va_numbers[0].va_number,"percobaan pertama")
   // console.log(response);
   // console.log(process.env.NEXT_MIDTRANS_SERVER);
