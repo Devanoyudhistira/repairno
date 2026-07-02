@@ -22,11 +22,11 @@ export default function Slideitem({ image }) {
 
 
     const data = Array.from({ length: 5 })
-    return <div className="flex flex-col gap-1 w-full -mt-25 lg:-mt-30 lg:w-1/2" >
-        <Carousel className={`h-full -mb-18 lg:-mb-16 p-0  ml-3`} setApi={setapi} >
+    return <div className="flex flex-col  gap-15 w-full   lg:w-1/2" >
+        <Carousel className={`h-full m-0 -mb-18 lg:-mb-16 p-0  ml-3`} setApi={setapi} >
             <CarouselContent className={"w-full h-full p-0 bg-transparent"} >
                 {data.map((_, index) => (
-                    <CarouselItem className={"bg-transparent border-0"} key={index}>
+                    <CarouselItem className={"bg-transparent p-0 border-0"} key={index}>
                         <div className="flex items-center justify-center w-full h-max">
                             <Card className={"w-full ring-0 p-0 bg-transparent border-0"} >
                                 <CardContent className="flex border-0 aspect-square  items-center justify-center">
@@ -38,7 +38,7 @@ export default function Slideitem({ image }) {
                 ))}
             </CarouselContent>
         </Carousel>
-        <div className="flex items-center z-999 -mt-10 gap-2" >
+        <div className="flex items-center z-999 -mt-5 gap-2" >
             {data.map((e, i) =>
                 <Dot className={current === i ? "size-10" : "size-7"} onClick={() => api.scrollTo(i)} key={i} />
             )}

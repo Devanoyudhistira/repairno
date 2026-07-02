@@ -19,7 +19,7 @@ export default async function Page({ params }) {
     return (
         <div>
             <Navbar singlepage={true} addcontext={"Product detail"} />
-            <main className={`w-full flex flex-col gap-0 lg:px-4 lg:flex-row lg:items-start items-center`} >
+            <main className={`w-full flex flex-col lg:px-4 lg:flex-row  items-center`} >
                 <Slideitem image={imageurl(data.gambar)} />
                 <Card className={`p-2 lg:ml-0 mr-3 h-130 lg:h-100 justify-between bg-transparent border-transparent border-0  border-none mt-2 w-[92%] lg:w-[60%] `} >
                     <div className="flex flex-col gap-4" >
