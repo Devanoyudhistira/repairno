@@ -12,7 +12,7 @@ import Deletealert from "./deletealert"
 import { deleterepair } from "@/action/repaircrud"
 
 
-export default function Dropdownmenurepair({ statusupdate, id }) {
+export default function Dropdownmenurepair({ statusupdate, id,shopstatus }) {
     const [deletealert,setdeletealert] = useState(false)
     const [state,action,pending] = useActionState(deleterepair.bind(null,id),null)
     return <>
@@ -29,11 +29,11 @@ export default function Dropdownmenurepair({ statusupdate, id }) {
                         <DropdownMenuSubContent>
                             <DropdownMenuGroup>
                                 <DropdownMenuLabel>
-                                    ubah status servisan
+                                    ubah status {shopstatus ? "pembelian ini" : "servisan"}
                                 </DropdownMenuLabel>
-                                <Dropdownform statusupdate={statusupdate} iditem={id} text={"selesai"} color={"success"} status={"success"} />
-                                <Dropdownform statusupdate={statusupdate} iditem={id} text={"proses"} color={"warning"} status={"prosess"} />
-                                <Dropdownform statusupdate={statusupdate} iditem={id} text={"error"} color={"destructive"} status={"error"} />
+                                <Dropdownform statusupdate={statusupdate} iditem={id} text={"selesai"} color={"success"} status={"success" } />
+                                <Dropdownform statusupdate={statusupdate} iditem={id} text={ shopstatus ? "pending" : "proses"} color={"warning"} status={ shopstatus ? "pending"  :"prosess"} />
+                                {!shopstatus && <Dropdownform statusupdate={statusupdate} iditem={id} text={"error"} color={"destructive"} status={"error"} />}
                             </DropdownMenuGroup>
                         </DropdownMenuSubContent>
                     </DropdownMenuPortal>
@@ -41,9 +41,9 @@ export default function Dropdownmenurepair({ statusupdate, id }) {
                 <DropdownMenuItem onClick={""} variant="link" >
                     <Link href={"/"} className="flex items-center gap-2" > <Eye /> lihat barang  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={ () => setdeletealert(true)} variant="destructive" >
+            { !!shopstatus && <DropdownMenuItem onClick={ () => setdeletealert(true)} variant="destructive" >
                     <TrashIcon /> delete
-                </DropdownMenuItem>
+                </DropdownMenuItem>}
             </DropdownMenuContent>
         </DropdownMenu>
         <Deletealert deleteaction={action} opencondition={deletealert} setopencondition={setdeletealert} id={id} deskripsi={`tindakan ini akan menghapus project perbaikan anda, anda yakin ?.`} title={"hapus project ?"} />

@@ -43,7 +43,7 @@ export default function Sidebarnav() {
             </SidebarMenu>
         </SidebarHeader>
         <SidebarMenuItem className={"pl-4"} >
-            <Link href={"/"} className="flex flex-row gap-2 items-center" > <Building2 className="size-6" />  ke menu pelanggan </Link>
+            <Link href={"/"} className="flex flex-row gap-2 items-center group-data-[collapsible=icon]:hidden" > <Building2 className="size-6" />  ke menu pelanggan </Link>
         </SidebarMenuItem>
         <Sidebargroupitem labelname={"shop admin section"} Icon={ShoppingCart} pagename={"shop function"} >
             <Sidebarlink Icon={Building} name={"shop main page"} linktarget={"/admin/shop"} />

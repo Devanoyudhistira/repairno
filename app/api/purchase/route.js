@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import midtransClient from "midtrans-client";
 import { Resend } from "resend";
 import Templatemail from "@/components/email/template";
+import MailMessage from "nodemailer/lib/mailer/mail-message";
+import message from "@/function/mailfunction";
 
 export async function POST(request) {
   const body = await request.json();
@@ -46,25 +48,7 @@ export async function POST(request) {
   console.log(purchaseresult.va_numbers[0].va_number)
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  (async function () {
-    const { data, error } = await resend.emails.send({
-      from: "Devano yudhistira <onboarding@resend.dev>",
-      to: [customeremail],
-      subject: "nomer va anda",
-      html: `<div>
-          <h1> kami dari devanocom </h1>
-          <h2> tolong kirimkan ke nomer ini melalui rekening anda </h2>
-          <h3>ini adalah nomer va anda</h3>
-          <h1> ${purchaseresult.va_numbers[0].va_number} </h1>
-        </div>`,
-    });
-
-    if (error) {
-      return console.error({ error });
-    }
-
-    console.log({ data });
-  })();
+  message(purchaseresult.va_numbers[0].va_number,"percobaan pertama")
   // console.log(response);
   // console.log(process.env.NEXT_MIDTRANS_SERVER);
   // console.log(process.env.NEXT_MIDTRANS_CLIENT);

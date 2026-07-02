@@ -5,7 +5,7 @@ import supabaseforimage from "@/supabase/supabaseforimage";
 import { revalidatePath } from "next/cache";
 
 export async function restock(id, jumlah, prev, formdata, ...args) {
-  console.log(jumlah);  
+  console.log(jumlah);
   const { error } = await supabase
     .from("shop")
     .update({ stock: jumlah })
@@ -28,7 +28,7 @@ export async function updatename(id, prev, formdata) {
   revalidatePath("/admin/shop");
   revalidatePath("/shop");
   if (error) return { message: "perubahan nama gagal", error: true };
-  return { message: "perubahan nama berhasil", success: true};
+  return { message: "perubahan nama berhasil", success: true };
 }
 
 export async function deleteitem(id, prev, formdata) {
@@ -40,7 +40,7 @@ export async function deleteitem(id, prev, formdata) {
   return { message: "penghapusan berhasil", error: false };
 }
 export async function updateprice(id, prev, formdata) {
-  const newprice = Number(formdata.get("newprice").replace(/\./g, "")); 
+  const newprice = Number(formdata.get("newprice").replace(/\./g, ""));
   const { error } = await supabase
     .from("shop")
     .update({ price: newprice })
@@ -74,3 +74,4 @@ export async function createitem(prev, formdata) {
   revalidatePath("/admin/shop/create");
   revalidatePath("/shop");
 }
+
