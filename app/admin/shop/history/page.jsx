@@ -1,6 +1,7 @@
 import { changestatus } from "@/action/payment-shop-crud"
 import Dropdownmenurepair from "@/components/admin/dropdownupdaterepair"
 import Tabledata from "@/components/admin/tabledata"
+import Tablefilter from "@/components/admin/tablefilter"
 import Tabletitle from "@/components/admin/tablehead"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
@@ -14,19 +15,21 @@ import { Filter } from "lucide-react"
 import { Menu } from "lucide-react"
 import moment from "moment"
 
-export default async function Page() {
-    const { data, error } = await supabase.from("payment-shop-history").select("*,item(name)").order("id", { ascending: true })
+export default async function Page({ searchParams }) {
+    const { sort, asc } = await searchParams
+    const sortColumn = sort ?? "id";
+    const currentsort = sortColumn === "date" ? "created_at" : "id"
+    const ascending = asc === "false";
+    const { data, error } = await supabase.from("payment-shop-history").select("*,item(name)").order(currentsort, { ascending:ascending })
+
     return <div className="flex flex-col w-screen pr-15  gap-10" >
         <h1 className="text-6xl mt-8 font-semibold capitalize" >Data penjualan</h1>
         <div className="flex flex-col gap-1"  >
             <div className="flex gap-3 items-center w-100 ml-2 mb-3" >
-                <ButtonGroup>
-                    <Button variant="outline" size="icon" > <Filter /> </Button>
-                    <Button variant="outline" size="icon" > <SortAscIcon /> </Button>
-                </ButtonGroup>
+                <Tablefilter ascparam={ascending} dateparam={sortColumn} />
                 <InputGroup>
-                <InputGroupInput placeholder="search"  />
-                <InputGroupAddon> <Search/> </InputGroupAddon>
+                    <InputGroupInput placeholder="search" />
+                    <InputGroupAddon> <Search /> </InputGroupAddon>
                 </InputGroup>
             </div>
             <Table>
