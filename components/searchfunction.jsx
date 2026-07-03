@@ -14,8 +14,7 @@ export default function Searchfunction({ currentsearch }) {
         e.preventDefault()
         const params = new URLSearchParams(searchParams.toString());        
         params.set("search", searchkey);
-        router.push(`?${params.toString()}`);
-        setcurrentvalue(value)
+        router.push(`?${params.toString()}`);        
     }
     return <form onSubmit={ e=> handleSearch(e) } >
         <InputGroup>

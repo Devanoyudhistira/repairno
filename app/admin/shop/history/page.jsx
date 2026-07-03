@@ -22,10 +22,10 @@ export default async function Page({ searchParams }) {
     const sortColumn = sort ?? "id";
     const currentsort = sortColumn === "date" ? "created_at" : "id"
     const ascending = asc === "false";    
-    let alldata = supabase.from("payment-shop-history").select("*,item!inner(name)", { count: "exact" }).order(currentsort, { ascending: ascending })
+    let alldata = supabase.from("payment_shop_history_view").select("*,item!inner(name)", { count: "exact" }).order(currentsort, { ascending: ascending })
 
     if (search && search.length >= 1) {
-        alldata = alldata.or(`name.ilike.%${search}%`,{ referencedTable: "item",});
+        alldata = alldata.or(`customer_name.ilike.%${search}%,item_name.ilike.%${search}%`); 
         console.log((await alldata).data )
         console.log((await alldata).error )
     }
@@ -55,9 +55,9 @@ export default async function Page({ searchParams }) {
                         <TableRow key={e.id} >
                             <Tabledata value={e.id} />
                             <Tabledata value={e.item?.name} />
-                            <Tabledata value={e.customer_data.name} />
-                            <Tabledata value={e.customer_data.phone_number} />
-                            <Tabledata value={e.customer_data.email} />
+                            <Tabledata value={e.customer_name} />
+                            <Tabledata value={e.phone} />
+                            <Tabledata value={e.email} />
                             <Tabledata textcolor={e.status === "pending" ? "text-warning bg-warning/10 px-1.5 py-1 rounded-2xl w-min h-min" : "text-success bg-success/10 px-1.5 py-1 rounded-2xl w-min h-min "} value={e.status} />
                             <Tabledata value={moment(e.created_at).locale("ID").format("MMMM D yyyy")} />
                             <TableCell> <Dropdownmenurepair shopstatus={true} statusupdate={changestatus} id={e.id} /> </TableCell>
