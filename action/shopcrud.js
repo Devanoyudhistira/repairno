@@ -31,13 +31,12 @@ export async function updatename(id, prev, formdata) {
   return { message: "perubahan nama berhasil", success: true };
 }
 
-export async function deleteitem(id, prev, formdata) {
-  const newname = formdata.get("newname");
+export async function deleteitem(id, prev, formdata) {  
   const { error } = await supabase.from("shop").delete().eq("id", id);
   revalidatePath("/admin/shop");
   revalidatePath("/shop");
   if (error) return { message: "penghapusan gagal", error: true };
-  return { message: "penghapusan berhasil", error: false };
+  return ({ message: "penghapusan berhasil", success: true });
 }
 export async function updateprice(id, prev, formdata) {
   const newprice = Number(formdata.get("newprice").replace(/\./g, ""));

@@ -8,11 +8,12 @@ import Link from "next/link"
 import convertToMoney from "@/function/convert"
 import Dropdownshop from "./admin/dropdownshop"
 import imageurl from "@/lib/imageurl"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 import { deleteitem } from "@/action/shopcrud"
+import { toast } from "sonner"
 
 export default function Productcard({ image, productname, harga, admin, id, stock }) {
-    const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), null)
+    const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")    
     return <>
         <Card size="md" className={`border-0 m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 bg-transparent`} >
             <div className={`rounded-xl self-center flex justify-center overflow-hidden w-max h-max `} >
