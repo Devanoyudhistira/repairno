@@ -9,6 +9,7 @@ import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import convertToMoney from "@/function/convert"
 import supabase from "@/supabase/supabase"
 import { Search } from "lucide-react"
 import { SortAscIcon } from "lucide-react"
@@ -42,6 +43,8 @@ export default async function Page({ searchParams }) {
                     <TableRow>
                         <Tabletitle title={"id"} />
                         <Tabletitle title={"barang"} />
+                        <Tabletitle title={"pembayaran"} />
+                        <Tabletitle title={"jumlah"} />
                         <Tabletitle title={"nama"} />
                         <Tabletitle title={"nomer hp"} />
                         <Tabletitle title={"email"} />
@@ -55,6 +58,8 @@ export default async function Page({ searchParams }) {
                         <TableRow key={e.id} >
                             <Tabledata value={e.id} />
                             <Tabledata value={e.item?.name} />
+                            <Tabledata value={convertToMoney(e.total_money)} />
+                            <Tabledata value={e.quantity} />
                             <Tabledata value={e.customer_name} />
                             <Tabledata value={e.phone} />
                             <Tabledata value={e.email} />
