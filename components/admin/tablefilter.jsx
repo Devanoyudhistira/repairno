@@ -6,8 +6,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Select } from "../ui/select";
 import Selectsort from "./selectsort";
 
-export default function Tablefilter({dateparam,ascparam}) {
-    
+export default function Tablefilter({ dateparam, ascparam }) {
+
     return <ButtonGroup>
         <Button variant="outline" size="icon" >
             <Filter />
@@ -21,10 +21,17 @@ export default function Tablefilter({dateparam,ascparam}) {
                 </DropdownMenuTrigger>
             </Button>
             <DropdownMenuContent className={`w-100`} >
-                <DropdownMenuLabel  > urutkan sesuai </DropdownMenuLabel>
-                <DropdownMenuItem  className={`w-full`} >
-                    <Selectsort currentasc={ascparam} currentdate={dateparam} />
-                </DropdownMenuItem>
+                <DropdownMenuContent className="w-100">
+                    <DropdownMenuLabel>
+                        Urutkan sesuai
+                    </DropdownMenuLabel>
+                    <div className="p-2">
+                        <Selectsort
+                            currentasc={ascparam}
+                            currentdate={dateparam}
+                        />
+                    </div>
+                </DropdownMenuContent>
             </DropdownMenuContent>
         </DropdownMenu>
     </ButtonGroup>

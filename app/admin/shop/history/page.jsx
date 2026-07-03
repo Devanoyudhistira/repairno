@@ -3,6 +3,7 @@ import Dropdownmenurepair from "@/components/admin/dropdownupdaterepair"
 import Tabledata from "@/components/admin/tabledata"
 import Tablefilter from "@/components/admin/tablefilter"
 import Tabletitle from "@/components/admin/tablehead"
+import Searchfunction from "@/components/searchfunction"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
@@ -14,23 +15,27 @@ import { SortAscIcon } from "lucide-react"
 import { Filter } from "lucide-react"
 import { Menu } from "lucide-react"
 import moment from "moment"
+import { sendError } from "next/dist/server/api-utils"
 
 export default async function Page({ searchParams }) {
-    const { sort, asc } = await searchParams
+    const { sort, asc, search } = await searchParams
     const sortColumn = sort ?? "id";
     const currentsort = sortColumn === "date" ? "created_at" : "id"
-    const ascending = asc === "false";
-    const { data, error } = await supabase.from("payment-shop-history").select("*,item(name)").order(currentsort, { ascending:ascending })
+    const ascending = asc === "false";    
+    let alldata = supabase.from("payment-shop-history").select("*,item!inner(name)", { count: "exact" }).order(currentsort, { ascending: ascending })
 
+    if (search && search.length >= 1) {
+        alldata = alldata.or(`name.ilike.%${search}%`,{ referencedTable: "item",});
+        console.log((await alldata).data )
+        console.log((await alldata).error )
+    }
+    const {data,error,count} = await alldata
     return <div className="flex flex-col w-screen pr-15  gap-10" >
-        <h1 className="text-6xl mt-8 font-semibold capitalize" >Data penjualan</h1>
+        <h1 className="text-6xl mt-8 ml-7 font-semibold capitalize" >Data penjualan</h1>
         <div className="flex flex-col gap-1"  >
-            <div className="flex gap-3 items-center w-100 ml-2 mb-3" >
+            <div className="flex gap-3 items-center w-60 lg:w-100 ml-2 mb-3" >
                 <Tablefilter ascparam={ascending} dateparam={sortColumn} />
-                <InputGroup>
-                    <InputGroupInput placeholder="search" />
-                    <InputGroupAddon> <Search /> </InputGroupAddon>
-                </InputGroup>
+                <Searchfunction />
             </div>
             <Table>
                 <TableHeader>
@@ -49,7 +54,7 @@ export default async function Page({ searchParams }) {
                     {data.map(e =>
                         <TableRow key={e.id} >
                             <Tabledata value={e.id} />
-                            <Tabledata value={e.item.name} />
+                            <Tabledata value={e.item?.name} />
                             <Tabledata value={e.customer_data.name} />
                             <Tabledata value={e.customer_data.phone_number} />
                             <Tabledata value={e.customer_data.email} />

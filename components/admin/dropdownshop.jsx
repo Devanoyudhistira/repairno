@@ -32,7 +32,7 @@ export default function Dropdownshop({ id, initialstock, initialname, initialpri
     const [deletealert, setdeletealert] = useState(false)
     return <>
         <DropdownMenu>
-            <DropdownMenuTrigger asChild >
+            <DropdownMenuTrigger asChild className="self-end" >
                 <Button size="icon" variant="link" > <Ellipsis /> </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>

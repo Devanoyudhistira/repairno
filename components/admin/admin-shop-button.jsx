@@ -16,14 +16,7 @@ export default function Adminshopbutton({setgrid,grid}) {
                 <Button variant="outline" size="icon" >
                     <Search />
                 </Button>
-            </Field>
-            <FieldContent>
-                <ButtonGroup className={` self-end justify-self-end`} >
-                    <Button onClick={e => setgrid("1")} size="icon" variant="outline" > <Square /> </Button>
-                    <Button onClick={e => setgrid("2")} size="icon" variant="outline" > <Grid2X2 /> </Button>
-                    <Button  onClick={e => setgrid("3")} size="icon" variant="outline" > <Grid3X3 /> </Button>
-                </ButtonGroup>
-            </FieldContent>
+            </Field>            
         </FieldGroup>
     </div>
 }
