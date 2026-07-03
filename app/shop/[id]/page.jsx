@@ -4,9 +4,8 @@ import Navbar from "@/components/navbar"
 import Slideitem from "@/components/slideitem"
 import { Button } from "@/components/ui/button"
 import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
+import { Toaster } from "@/components/ui/sonner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Varianttab from "@/components/Variantabs"
-import Varianimage from "@/components/variantimage"
 import convertToMoney from "@/function/convert"
 import imageurl from "@/lib/imageurl"
 import supabase from "@/supabase/supabase"
@@ -20,7 +19,9 @@ export default async function Page({ params }) {
         <div>
             <Navbar singlepage={true} addcontext={"Product detail"} />
             <main className={`w-full flex flex-col lg:px-4 lg:flex-row  items-center`} >
+                
                 <Slideitem image={imageurl(data.gambar)} />
+                <Toaster/>
                 <Card className={`p-2 lg:ml-0 mr-3 h-130 lg:h-100 justify-between bg-transparent border-transparent border-0  border-none mt-2 w-[92%] lg:w-[60%] `} >
                     <div className="flex flex-col gap-4" >
                         <CardHeader className={`w-full font-semibold border-transparent border-none border-0 text-xl p-0 flex justify-between`} >
