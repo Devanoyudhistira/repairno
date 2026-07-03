@@ -38,7 +38,7 @@ export default function Slideitem({ image }) {
                 ))}
             </CarouselContent>
         </Carousel>
-        <div className="flex items-center  gap-2" >
+        <div className="flex items-center lg:mt-15 gap-2" >
             {data.map((e, i) =>
                 <Dot className={current === i ? "size-10" : "size-7"} onClick={() => api.scrollTo(i)} key={i} />
             )}

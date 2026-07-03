@@ -14,16 +14,14 @@ import Image from "next/image"
 export default async function Page({ params }) {
     const { id } = await params
     const { data, error } = await supabase.from("shop").select("*").eq("id", id).single()
-
     return (
         <div>
+            <Toaster />
             <Navbar singlepage={true} addcontext={"Product detail"} />
             <main className={`w-full flex flex-col lg:px-4 lg:flex-row  items-center`} >
-                
                 <Slideitem image={imageurl(data.gambar)} />
-                <Toaster/>
-                <Card className={`p-2 lg:ml-0 mr-3 h-130 lg:h-100 justify-between bg-transparent border-transparent border-0  border-none mt-2 w-[92%] lg:w-[60%] `} >
-                    <div className="flex flex-col gap-4" >
+                <Card className={`p-2 lg:ml-0 mr-3 h-130 lg:-mt-10 lg:h-100 justify-between bg-transparent border-transparent border-0  border-none mt-2 w-[92%] lg:w-[60%] `} >
+                    <div className="flex flex-col gap-4 " >
                         <CardHeader className={`w-full font-semibold border-transparent border-none border-0 text-xl p-0 flex justify-between`} >
                             <h1> {data.name} </h1>
                             <h1> {convertToMoney(data.price)} </h1>
