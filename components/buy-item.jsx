@@ -11,10 +11,11 @@ import Paymentinfo from "./payment-info"
 import { purchase } from "@/action/purchaseaction"
 import { Spinner } from "./ui/spinner"
 import { toast } from "sonner"
+import Paymentoption from "./payment-option"
 
-export default function Buyitem({ id }) {
+export default function Buyitem({ id,variant }) {
     const [confirmbuy, setconfirmbuy] = useState(false)
-    const [state, payaction, pending] = useActionState(purchase.bind(null, id), null)
+    const [state, payaction, pending] = useActionState(purchase.bind(null, id,variant), null)
     const [vainfo, setvainfo] = useState(false)
     useEffect(() => {
         if (state) {
@@ -23,14 +24,14 @@ export default function Buyitem({ id }) {
         }
     }, [setvainfo, setconfirmbuy, state])
     return (
-        <>            
+        <>
             <Button onClick={() => setconfirmbuy(true)} variant="secondary" className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
             <Dialog onOpenChange={setconfirmbuy} open={confirmbuy} >
                 <DialogContent showCloseButton={false} >
                     <DialogHeader>
                         <DialogTitle className={`text-xl`} > tolong masukan identitas anda  </DialogTitle>
                     </DialogHeader>
-                    <form action={payaction}>
+                    <form action={payaction}>                        
                         <FieldGroup>
                             <Field>
                                 <FieldLabel> nama anda </FieldLabel>
