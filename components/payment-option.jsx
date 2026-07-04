@@ -10,7 +10,7 @@ export default function Paymentoption({title,description,value}) {
                     {description}
                 </FieldDescription>
             </FieldContent>
-            <RadioGroupItem value={value} id={title} />
+            <RadioGroupItem className={"hidden"} value={value} id={title} />
         </Field>
     </FieldLabel>
 }

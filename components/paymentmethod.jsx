@@ -1,3 +1,5 @@
+"use client"
+
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldSeparator, FieldTitle } from "@/components/ui/field"
 import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
