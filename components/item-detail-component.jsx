@@ -37,7 +37,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                     <RadioGroup key={c} name="variant" defaultValue={defaultname[i].id} className={"grid grid-cols-4 gap-2 items-center"} >
                         <h1 className="text-xl font-semibold col-span-4" > {c} </h1>
                         {variantdata.map(e =>
-                            e.variant_category === c && <Paymentoption category={c} setSelect={setvariant} key={e.id} id={e.id} title={e.name} value={e.id} description={""} />)
+                            e.variant_category === c && <Paymentoption category={c} setSelect={setvariant} select={variant} key={e.id} id={e.id} title={e.name} value={e.id} description={""} />)
                         }
                     </RadioGroup>
                 )}

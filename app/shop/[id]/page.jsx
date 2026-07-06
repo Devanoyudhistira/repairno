@@ -14,7 +14,7 @@ export default async function Page({ params }) {
     const { data: variantdata, error: varianrror } = await supabase.from("variant").select("*").eq("item", id)
     const categories = [...new Set(variantdata.map(v => v.variant_category))];
     const defaultgroup = variantdata.filter(e => e.default_variant)
-    const defaultname = defaultgroup.map(e => ({ category: e.variant_category, id: e.id }))    
+    const defaultname = defaultgroup.map(e => ({ category: e.variant_category, id: e.id }))
     return (
         <div>
             <Toaster />
