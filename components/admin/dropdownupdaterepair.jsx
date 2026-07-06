@@ -12,7 +12,7 @@ import Deletealert from "./deletealert"
 import { deleterepair } from "@/action/repaircrud"
 
 
-export default function Dropdownmenurepair({ statusupdate,deleteaction, id,shopstatus }) {
+export default function Dropdownmenurepair({ statusupdate,deleteaction, id,shopstatus,deletedescription,deletetitle }) {
     const [deletealert,setdeletealert] = useState(false)
     const [state,action,pending] = useActionState(deleteaction.bind(null,id),null)
     return <>
@@ -46,6 +46,6 @@ export default function Dropdownmenurepair({ statusupdate,deleteaction, id,shops
                 </DropdownMenuItem>}
             </DropdownMenuContent>
         </DropdownMenu>
-        <Deletealert deleteaction={action} opencondition={deletealert} setopencondition={setdeletealert} id={id} deskripsi={`tindakan ini akan menghapus project perbaikan anda, anda yakin ?.`} title={"hapus project ?"} />
+        <Deletealert  deleteaction={action} opencondition={deletealert} setopencondition={setdeletealert} id={id} deskripsi={deletedescription} title={deletetitle} />
     </>
 }

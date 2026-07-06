@@ -29,7 +29,7 @@ export default function Repaircard({ data }) {
                 <h2> keluhan: {data.problem} </h2>
             </CardDescription>
             <CardFooter className={`w-full justify-self-end self-end mr-1 p-2 flex items-end justify-end`} >
-                <Dropdownmenurepair deleteaction={deleterepair} id={data.id} statusupdate={updatestatus} />
+                <Dropdownmenurepair deleteaction={deleterepair} deletedescription={`tindakan ini akan menghapus project perbaikan anda, anda yakin ?.`} deletetitle={"hapus project ?"} id={data.id} statusupdate={updatestatus} />
             </CardFooter>
         </CardContent>
     </Card>

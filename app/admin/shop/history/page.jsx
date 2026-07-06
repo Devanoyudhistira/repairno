@@ -69,7 +69,7 @@ export default async function Page({ searchParams }) {
                             <Tabledata value={e.email} />
                             <Tabledata textcolor={e.status === "pending" ? "text-warning bg-warning/10 px-1.5 py-1 rounded-2xl w-min h-min" : "text-success bg-success/10 px-1.5 py-1 rounded-2xl w-min h-min "} value={e.status} />
                             <Tabledata value={moment(e.created_at).locale("ID").format("MMMM D yyyy")} />
-                            <TableCell> <Dropdownmenurepair deleteaction={deletedata} shopstatus={true} statusupdate={changestatus} id={e.id} /> </TableCell>
+                            <TableCell> <Dropdownmenurepair deletedescription={`tindakan ini akan data penjualan anda yakin ?.`} deletetitle={"hapus data ?"} deleteaction={deletedata} shopstatus={true} statusupdate={changestatus} id={e.id} /> </TableCell>
                         </TableRow>
                     )}
                 </TableBody>

@@ -11,6 +11,7 @@ import { ButtonGroup } from "../ui/button-group";
 import { Plus } from "lucide-react";
 import { createitem } from "@/action/shopcrud";
 import { Spinner } from "../ui/spinner";
+import Variantinput from "../variantinput";
 
 
 export default function Createitem({ }) {
@@ -40,6 +41,7 @@ export default function Createitem({ }) {
                             id="harga"
                         />
                     </InputGroup>
+                    <Variantinput/>
                 </div>
             </Field>
             <Button size="lg" variant={pending ? "outline" : "default"} className={`text-2xl self-center w-full ml-10 lg:ml-30 flex gap-1 mr-10`}>
