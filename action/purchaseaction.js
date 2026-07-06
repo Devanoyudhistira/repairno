@@ -24,7 +24,7 @@ export async function purchase(id, variant, prev, formdata) {
     status:"pending",
     email,
     customer_name:username,
-    customer_phone:phone,
+    phone:phone,
     variant_item:variantitem.map(e => e.id) ,
   })
   console.log(purchaseerror)
