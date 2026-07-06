@@ -12,9 +12,9 @@ import Deletealert from "./deletealert"
 import { deleterepair } from "@/action/repaircrud"
 
 
-export default function Dropdownmenurepair({ statusupdate, id,shopstatus }) {
+export default function Dropdownmenurepair({ statusupdate,deleteaction, id,shopstatus }) {
     const [deletealert,setdeletealert] = useState(false)
-    const [state,action,pending] = useActionState(deleterepair.bind(null,id),null)
+    const [state,action,pending] = useActionState(deleteaction.bind(null,id),null)
     return <>
         <DropdownMenu>
             <DropdownMenuTrigger asChild >

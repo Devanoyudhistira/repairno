@@ -4,7 +4,7 @@ import Image from "next/image"
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from "../ui/card"
 import Dropdownmenurepair from "./dropdownupdaterepair"
 import { Badge } from "../ui/badge"
-import { updatestatus } from "@/action/repaircrud"
+import { deleterepair, updatestatus } from "@/action/repaircrud"
 
 export default function Repaircard({ data }) {
     function statuscolor(status) {
@@ -29,7 +29,7 @@ export default function Repaircard({ data }) {
                 <h2> keluhan: {data.problem} </h2>
             </CardDescription>
             <CardFooter className={`w-full justify-self-end self-end mr-1 p-2 flex items-end justify-end`} >
-                <Dropdownmenurepair id={data.id} statusupdate={updatestatus} />
+                <Dropdownmenurepair deleteaction={deleterepair} id={data.id} statusupdate={updatestatus} />
             </CardFooter>
         </CardContent>
     </Card>

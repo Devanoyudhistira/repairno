@@ -17,3 +17,14 @@ export async function changestatus(id, status, prevState, formData) {
   console.log(data);
   revalidatePath("/admin/shop/history");
 }
+export async function deletedata(id, status, prevState, formData) {
+  const { data, error } = await supabase
+    .from("payment-shop-history")
+    .delete()
+    .eq("id", id)
+    .select("*")
+    .single();
+
+  console.log(data);
+  revalidatePath("/admin/shop/history");
+}
