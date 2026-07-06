@@ -5,7 +5,6 @@ import Slideitem from "@/components/slideitem"
 import { Toaster } from "@/components/ui/sonner"
 import imageurl from "@/lib/imageurl"
 import supabase from "@/supabase/supabase"
-import Image from "next/image"
 
 export default async function Page({ params }) {
     const { id } = await params
@@ -16,7 +15,7 @@ export default async function Page({ params }) {
     const defaultgroup = variantdata.filter(e => e.default_variant)
     const defaultname = defaultgroup.map(e => ({ category: e.variant_category, id: e.id }))
     return (
-        <div>
+        <div>            
             <Toaster />
             <Navbar singlepage={true} addcontext={"Product detail"} />
             <main className={`w-full flex flex-col lg:px-4 lg:flex-row  items-center`} >

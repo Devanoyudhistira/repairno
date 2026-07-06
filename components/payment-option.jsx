@@ -2,8 +2,8 @@ import { Field, FieldContent, FieldDescription, FieldLabel, FieldTitle } from ".
 import { RadioGroupItem } from "./ui/radio-group";
 
 export default function Paymentoption({ title, description, value, setSelect,category,id,select }) {    
-    return <FieldLabel className={`transition w-max border-2 has-data-[state=checked]:border-white border-primary
-             has-data-[state=checked]:bg-primary has-data-[state=checked]:text-primary-foreground `}  htmlFor={title} >
+    return <FieldLabel className={`transition bg-primary-foreground text-primary w-max border-2 has-data-[state=checked]:border-white 
+             has-data-[state=checked]:bg-primary dark:has-data-[state=checked]:bg-primary dark:has-data-[state=checked]:text-primary-foreground has-data-[state=checked]:text-primary-foreground `}  htmlFor={title} >
         <Field orientation="horizontal">
             <FieldContent>
                 <FieldTitle>{title}</FieldTitle>

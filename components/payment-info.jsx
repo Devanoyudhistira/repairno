@@ -24,7 +24,7 @@ export default function Paymentinfo({ condition, vanumber, setcondition }) {
             </DialogHeader>
             <Separator />
             <div className="flex items-center gap-2" >
-                <div className="p-2 text-2xl w-max self-center justify-self-center rounded-xl font-medium text-center bg-primary/30 text-primary" >
+                <div className="p-2 text-md md:text-xl lg:text-2xl w-max self-center justify-self-center rounded-xl font-medium text-center bg-primary/30 text-primary" >
                     {vanumber}
                 </div>
                 <Button onClick={copyToClipboard} size="icon" variant="outline" > <Copy /> </Button>
