@@ -28,7 +28,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 <h1 className="text-primary text-2xl font-semibold capitalize" > spesifikasi product </h1>
                 <ul className="w-full px-2 text-md flex flex-col gap-3 mt-8 " >
                     {specdata.map(e =>
-                        <Detatiledlist value={e?.alue} category={e?.name} key={e?.id} />
+                        <Detatiledlist value={e?.value} category={e?.name} key={e?.id} />
                     )}
                 </ul>
             </CardContent>

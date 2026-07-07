@@ -46,11 +46,11 @@ export async function POST(request) {
   });
 
   const purchaseresult = await response  
-  const {data:createpayment,error:paymenterror} = await supabase.from("shop-payment-history").insert({
-    customer_data:{name:customername,email:customeremail,phone_number:customerphone},
+  // const {data:createpayment,error:paymenterror} = await supabase.from("shop-payment-history").insert({
+  //   customer_data:{name:customername,email:customeremail,phone_number:customerphone},
     
-  })
-  message(purchaseresult.va_numbers[0].va_number,"percobaan pertama")
+  // })
+  // message(purchaseresult.va_numbers[0].va_number,"percobaan pertama")
   // console.log(response);
   // console.log(process.env.NEXT_MIDTRANS_SERVER);
   // console.log(process.env.NEXT_MIDTRANS_CLIENT);
