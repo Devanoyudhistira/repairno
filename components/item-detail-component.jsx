@@ -13,6 +13,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
     const [variant, setvariant] = useState(defaultname)
     console.log(variant)
 
+
     return <Card className={`p-2 lg:ml-0 mr-3   min-h-130 max-h-max lg:min-h-max justify-between bg-transparent border-transparent border-0 border-none mt-2 w-[92%] lg:w-[70%] `} >
         <div className="flex flex-col gap-4 " >
             <CardHeader className={`w-full font-semibold border-transparent border-none border-0 text-xl p-0 flex justify-between`} >
@@ -66,7 +67,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
             </div>
         </div>
         <CardAction className={`p-0 w-full`} >
-            <Buyitem variant={variant} id={data?.id} />
+            <Buyitem data={data} variant={variant} id={data?.id} />
         </CardAction>
     </Card>
 }

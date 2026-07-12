@@ -12,10 +12,15 @@ import { purchase } from "@/action/purchaseaction"
 import { Spinner } from "./ui/spinner"
 import { toast } from "sonner"
 import Paymentoption from "./payment-option"
+import { Card, CardContent, CardDescription } from "./ui/card"
+import Image from "next/image"
+import imageurl from "@/lib/imageurl"
+import convertToMoney from "@/function/convert"
+import { Dot } from "lucide-react"
 
-export default function Buyitem({ id,variant }) {
+export default function Buyitem({ id, variant, data }) {
     const [confirmbuy, setconfirmbuy] = useState(false)
-    const [state, payaction, pending] = useActionState(purchase.bind(null, id,variant), null)
+    const [state, payaction, pending] = useActionState(purchase.bind(null, id, variant), null)
     const [vainfo, setvainfo] = useState(false)
     useEffect(() => {
         if (state) {
@@ -28,10 +33,24 @@ export default function Buyitem({ id,variant }) {
             <Button onClick={() => setconfirmbuy(true)} variant="secondary" className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
             <Dialog onOpenChange={setconfirmbuy} open={confirmbuy} >
                 <DialogContent showCloseButton={false} >
+                    <Card className={`px-1 py-2`} >
+                        <CardContent className={`flex p-1 flex-row gap-4 items-center`} >
+                            <Image src={imageurl(data.gambar)} alt={data.name} width={100} height={100} className="w-20 h-20 object-cover object-center rounded-xl " />
+                            <CardDescription>
+                                <h1 className="" > {data.name} </h1>
+                                <div className="flex items-center gap-2" >
+                                    {variant.map(e =>
+                                        <span className="flex text-xs items-center gap-1" key={e.id} > {e.category}: {e.name} </span>
+                                    )}
+                                </div>
+                                <h2 className="text-secondary" > {convertToMoney(data.price)} </h2>
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
                     <DialogHeader>
                         <DialogTitle className={`text-xl`} > tolong masukan identitas anda  </DialogTitle>
                     </DialogHeader>
-                    <form action={payaction}>                        
+                    <form action={payaction}>
                         <FieldGroup>
                             <Field>
                                 <FieldLabel> nama anda </FieldLabel>
@@ -55,4 +74,4 @@ export default function Buyitem({ id,variant }) {
             <Paymentinfo setcondition={setvainfo} condition={vainfo} vanumber={state?.va_numbers[0]?.va_number} />
         </>
     )
-}
+} 

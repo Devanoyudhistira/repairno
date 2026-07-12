@@ -22,7 +22,7 @@ export default async function Page({ params }) {
         )
     ];
     const defaultgroup = variantdata.filter(e => e.default_variant)
-    const defaultname = defaultgroup.map(e => ({ category: e.variant_category, id: e.id }))
+    const defaultname = defaultgroup.map(e => ({ category: e.variant_category, id: e.id,name:e.name }))
     return (
         <div>
             <Toaster />
