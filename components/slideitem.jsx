@@ -21,16 +21,16 @@ export default function Slideitem({ image }) {
     }, [api, setCount])
 
 
-    const data = Array.from({ length: 5 })
+    const data = [image,"/image/case.jpg","/image/gpu.jpg"]
     return <div className="flex flex-col  w-full   lg:w-1/2" >
         <Carousel className={`h-full lg:mt-0 mt-10 lg:-mb-16 p-0  ml-3`} setApi={setapi} >
             <CarouselContent className={"w-full h-full p-0 bg-transparent"} >
-                {data.map((_, index) => (
+                {data.map((e, index) => (
                     <CarouselItem className={"bg-transparent p-0 border-0"} key={index}>
                         <div className="flex items-center justify-center w-full h-max">
                             <Card className={"w-full ring-0 p-0 bg-transparent border-0"} >
                                 <CardContent className="flex border-0 aspect-square  items-center justify-center">
-                                    <Image src={image} className="object-center object-cover w-full h-100 aspect-square" alt="yeahhh" width={"300"} height={"300"} />
+                                    <Image src={e} className="object-center object-cover w-full h-100 aspect-square" alt="yeahhh" width={"300"} height={"300"} />
                                 </CardContent>
                             </Card>
                         </div>
