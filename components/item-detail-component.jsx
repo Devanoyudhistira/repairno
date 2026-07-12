@@ -12,7 +12,11 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
 
     const [variant, setvariant] = useState(defaultname)
     console.log(variant)
+    const totalvariant = variant.reduce((total, item) => {
+        return total + item.price;
+    }, 0);
 
+    const totalprice = totalvariant + data.price    
 
     return <Card className={`p-2 lg:ml-0 mr-3   min-h-130 max-h-max lg:min-h-max justify-between bg-transparent border-transparent border-0 border-none mt-2 w-[92%] lg:w-[70%] `} >
         <div className="flex flex-col gap-4 " >
@@ -23,7 +27,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 {data.description} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores illum adipisci officia! Facilis nam similique recusandae odio possimus asperiores quos.
             </CardDescription>
             <Separator />
-            <h1 className="text-2xl ml-4 font-bold" > {convertToMoney(data.price)} </h1>
+            <h1 className="text-2xl ml-4 font-bold" > {convertToMoney(totalprice)} </h1>
             <Separator />
             <CardContent className={`p-2 w-full`} >
                 <h1 className="text-primary text-2xl font-semibold capitalize" > spesifikasi product </h1>
@@ -60,6 +64,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                                     title={e.name}
                                     value={e.id}
                                     description=""
+                                    price={e.variant_price}
                                 />
                             ))}
                     </RadioGroup>
@@ -67,7 +72,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
             </div>
         </div>
         <CardAction className={`p-0 w-full`} >
-            <Buyitem data={data} variant={variant} id={data?.id} />
+            <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} />
         </CardAction>
     </Card>
 }

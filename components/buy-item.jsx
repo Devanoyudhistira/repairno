@@ -18,7 +18,7 @@ import imageurl from "@/lib/imageurl"
 import convertToMoney from "@/function/convert"
 import { Dot } from "lucide-react"
 
-export default function Buyitem({ id, variant, data }) {
+export default function Buyitem({ id, variant, data,allprice }) {
     const [confirmbuy, setconfirmbuy] = useState(false)
     const [state, payaction, pending] = useActionState(purchase.bind(null, id, variant), null)
     const [vainfo, setvainfo] = useState(false)
@@ -43,7 +43,7 @@ export default function Buyitem({ id, variant, data }) {
                                         <span className="flex text-xs items-center gap-1" key={e.id} > {e.category}: {e.name} </span>
                                     )}
                                 </div>
-                                <h2 className="text-secondary" > {convertToMoney(data.price)} </h2>
+                                <h2 className="text-secondary" > {convertToMoney(allprice)} </h2>
                             </CardDescription>
                         </CardContent>
                     </Card>
