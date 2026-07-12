@@ -35,11 +35,11 @@ export default function Buyitem({ id,variant }) {
                         <FieldGroup>
                             <Field>
                                 <FieldLabel> nama anda </FieldLabel>
-                                <Input name="customer-name" type={"text"} />
+                                <Input className={"invalid:border-destructive invalid:ring-2 invalid:ring-destructive invalid:outline-none  "} required name="customer-name" type={"text"} />
                                 <FieldLabel> email anda </FieldLabel>
-                                <Input name="customer-email" type={"email"} />
+                                <Input className={"invalid:border-destructive invalid:ring-2 invalid:ring-destructive invalid:outline-none  "} required name="customer-email" type={"email"} />
                                 <FieldLabel> tolong masukan nomer yang masih aktif </FieldLabel>
-                                <Input name="customer-phone" type={"number"} />
+                                <Input className={"invalid:border-destructive invalid:ring-2 invalid:ring-destructive invalid:outline-none  "} required name="customer-phone" type={"number"} />
                             </Field>
                             <FieldLabel> Pilih metode pembayaran anda </FieldLabel>
                             <Paymentmethod />
