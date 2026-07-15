@@ -20,8 +20,9 @@ import { Building } from "lucide-react";
 import Modetoggle from "../modetoggle";
 import Link from "next/link";
 import { Building2 } from "lucide-react";
+import Image from "next/image";
 
-export default function Sidebarnav() {
+export default function Sidebarnav({ userimage }) {
     return <Sidebar defaultopen={false} collapsible="icon"  >
         <div className="w-full flex items-center justify-between" >
             <SidebarTrigger />
@@ -34,9 +35,10 @@ export default function Sidebarnav() {
         </span>
         <SidebarHeader className={`text-2xl flex flex-row gap-2 items-center font-bold`} >
             <SidebarMenu className={`flex flex-row gap-1 items-center`} >
-                <div className="p-1 text-xs w-max rounded-full bg-blue-400 dark:bg-blue-900 text-white flex items-center justify-center">
+                {!userimage ? <div className="p-1 text-xs w-max rounded-full bg-blue-400 dark:bg-blue-900 text-white flex items-center justify-center">
                     DY
-                </div>
+                </div> :
+                <Image className="object-cover object-center rounded-full w-8 h-8" src={userimage} alt="profile" width={100} height={100} />}
                 <span className="group-data-[collapsible=icon]:hidden text-xl capitalize font-semibold">
                     Devano yudhistira
                 </span>
@@ -48,7 +50,7 @@ export default function Sidebarnav() {
         <Sidebargroupitem labelname={"shop admin section"} Icon={ShoppingCart} pagename={"shop function"} >
             <Sidebarlink Icon={Building} name={"shop main page"} linktarget={"/admin/shop"} />
             <Sidebarlink Icon={Plus} name={"buat dagangan"} linktarget={"/admin/shop/create"} />
-            <Sidebarlink Icon={Clock} name={"lihat riwayat"} linktarget={"/admin/shop/history"} />            
+            <Sidebarlink Icon={Clock} name={"lihat riwayat"} linktarget={"/admin/shop/history"} />
         </Sidebargroupitem>
         <Sidebargroupitem labelname={"repair admin section"} Icon={WrenchIcon} pagename={"repair function"} >
             <Sidebarlink Icon={Plus} name={"repair main page"} linktarget={"/admin/repair"} />
