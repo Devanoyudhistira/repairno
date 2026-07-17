@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Productcard from "@/components/productcard";
 import Searchfunction from "@/components/searchfunction";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { Toaster } from "@/components/ui/sonner";
 import userid from "@/lib/userid";
 import supabase from "@/supabase/supabase";
 import { Search } from "lucide-react";
@@ -55,6 +56,7 @@ export default async function Page({ searchParams }) {
     const { data, error } = await alldata
     console.log(data.length)
     return <main className="text-primary pb-22" >
+        <Toaster />
         <Navbar />
         <div className="w-full lg:px-10 px-3 mt-4" >
             <Searchfunction />

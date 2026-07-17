@@ -3,9 +3,11 @@
 import userid from "@/lib/userid";
 import { createClient } from "@/supabase/server";
 import supabase from "@/supabase/supabase";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(request) {  
+
   const user = await userid();
   const body = await request.json();
   const { id } = body;
@@ -19,8 +21,10 @@ export async function POST(request) {
       success: false,
     });
   }
+  revalidatePath("/wishlist");
   return NextResponse.json({
     success: true,
+    message:"produk berhasil ditambahkan"
   });
 }
 
@@ -28,7 +32,7 @@ export async function DELETE(request) {
   const body = await request.json();
   const user = await userid();
   const { id } = body;
-  console.log(id)
+  console.log(id);
   const { data, error } = await supabase
     .from("wishlist")
     .delete()
@@ -42,7 +46,9 @@ export async function DELETE(request) {
       success: false,
     });
   }
+  revalidatePath("/wishlist");
   return NextResponse.json({
+    message:"produk berhasil dihapus",
     success: true,
   });
 }

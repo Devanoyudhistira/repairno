@@ -12,10 +12,14 @@ import { useActionState, useEffect, useState } from "react"
 import { deleteitem } from "@/action/shopcrud"
 import { toast } from "sonner"
 import Wishlistbutton from "./wishlist-button"
+import { useRouter } from "next/navigation"
+import { Toaster } from "./ui/sonner"
 
-export default function Productcard({ image, productname, harga, admin, id, stock, wishlist,authincated }) {
+export default function Productcard({ image, productname, harga, admin, id, stock, wishlist, authincated }) {
+    const router = useRouter();
     const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")
     const [iswishlist, setiswishlist] = useState(wishlist)
+    const [wishlistmessage, setwishlistmessage] = useState(null)
     async function addwishlist() {
         if (!wishlist) {
             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
@@ -29,11 +33,14 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
             })
             const response = await wishrequest.json()
             if (response.success) {
+                setwishlistmessage(response.message)
                 setiswishlist(true)
+                router.refresh()
+                return response
             }
         }
         else {
-             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
+            const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -44,14 +51,18 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
             })
             const response = await wishrequest.json()
             if (response.success) {
+                setwishlistmessage(response.message)
                 setiswishlist(false)
+                router.refresh()
+                return response
             }
         }
     }
     return <>
+
         <Card size="md" className={`border-0 bg-[#F8F8F8] m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 dark:bg-transparent`} >
             <div className={`rounded-xl relative self-center flex justify-center overflow-hidden w-max h-max `} >
-                {authincated && <Wishlistbutton handle={addwishlist} wishlisht={iswishlist} />}
+                {authincated && <Wishlistbutton handle={() => toast.promise(addwishlist(), {position: "top-center", loading: "loading..", success: (response) => response.message, error: "gagal silahkan coba lagi" })} wishlisht={iswishlist} />}
                 <Image className="w-[90%] lg:w-80 h-full rounded-xl  mt-2 object-center object-cover aspect-square" src={imageurl(image)} alt="productname" width={700} height={700} />
             </div>
             <CardContent className={`px-0 py-1 m-0 flex  h-full flex-col justify-between `} >
