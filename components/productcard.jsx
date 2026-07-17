@@ -13,7 +13,7 @@ import { deleteitem } from "@/action/shopcrud"
 import { toast } from "sonner"
 import Wishlistbutton from "./wishlist-button"
 
-export default function Productcard({ image, productname, harga, admin, id, stock, wishlist }) {
+export default function Productcard({ image, productname, harga, admin, id, stock, wishlist,authincated }) {
     const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")
     const [iswishlist, setiswishlist] = useState(wishlist)
     async function addwishlist() {
@@ -51,7 +51,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
     return <>
         <Card size="md" className={`border-0 bg-[#F8F8F8] m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 dark:bg-transparent`} >
             <div className={`rounded-xl relative self-center flex justify-center overflow-hidden w-max h-max `} >
-                <Wishlistbutton handle={addwishlist} wishlisht={iswishlist} />
+                {authincated && <Wishlistbutton handle={addwishlist} wishlisht={iswishlist} />}
                 <Image className="w-[90%] lg:w-80 h-full rounded-xl  mt-2 object-center object-cover aspect-square" src={imageurl(image)} alt="productname" width={700} height={700} />
             </div>
             <CardContent className={`px-0 py-1 m-0 flex  h-full flex-col justify-between `} >
