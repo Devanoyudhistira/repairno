@@ -28,5 +28,19 @@ export async function DELETE(request) {
   const body = await request.json();
   const user = await userid();
   const { id } = body;
-  const { data, error } = await supabase.from("wishlist").delete().eq("id",id).eq("user",user) ;
+  const { data, error } = await supabase
+    .from("wishlist")
+    .delete()
+    .eq("id", id)
+    .eq("user", user);
+  console.log(data);
+  if (error) {
+    console.log(error);
+    return NextResponse.json({
+      success: false,
+    });
+  }
+  return NextResponse.json({
+    success: true,
+  });
 }

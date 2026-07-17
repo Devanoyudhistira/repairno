@@ -17,7 +17,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
     const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")
     const [iswishlist, setiswishlist] = useState(wishlist)
     async function addwishlist() {
-        if (wishlist) {
+        if (!wishlist) {
             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
                 method: "POST",
                 headers: {
