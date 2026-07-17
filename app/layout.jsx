@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.className} h-full `}>
-      <body className="min-h-full overflow-x-hidden flex flex-col pb-20">
+      <body className="min-h-full overflow-x-hidden flex flex-col">
         <ThemeProvider attribute="class"
           defaultTheme="system"
           enableSystem

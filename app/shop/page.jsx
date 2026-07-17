@@ -47,7 +47,7 @@ export default async function Page({ searchParams }) {
 
     const { data, error } = await alldata
     console.log(data.length)
-    return <main className="text-primary" >
+    return <main className="text-primary pb-22" >
         <Navbar />
         <div className="w-full lg:px-10 px-3 mt-4" >
             <Searchfunction />

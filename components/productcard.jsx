@@ -15,7 +15,7 @@ import { toast } from "sonner"
 export default function Productcard({ image, productname, harga, admin, id, stock }) {
     const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")    
     return <>
-        <Card size="md" className={`border-0 m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 bg-transparent`} >
+        <Card size="md" className={`border-0 bg-[#F8F8F8] m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 dark:bg-transparent`} >
             <div className={`rounded-xl self-center flex justify-center overflow-hidden w-max h-max `} >
                 <Image className="w-[90%] lg:w-80 h-full rounded-xl  mt-2 object-center object-cover aspect-square" src={imageurl(image)} alt="productname" width={700} height={700} />
             </div>
