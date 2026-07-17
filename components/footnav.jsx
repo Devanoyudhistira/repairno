@@ -22,10 +22,10 @@ export default function Footnav() {
                 <Heart className="size-7" />
             </Button>
         </Link>
-        <Link href={"/checkout"} className="w-[50%] h-full" >
+        {/* <Link href={"/checkout"} className="w-[50%] h-full" >
             <Button size="xl " variant={isshop.includes("checkout") ? `secondary` : "link"} className={`w-full p-0 m-0 h-full flex items-center justify-center ${isshop.includes("checkout") ? "text-accent" : "text-primary"}`} >
                 <ShoppingBag className="size-7" />
             </Button>
-        </Link>
+        </Link> */}
     </footer>
 }
