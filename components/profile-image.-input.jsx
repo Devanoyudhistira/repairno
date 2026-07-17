@@ -31,7 +31,7 @@ export default function Profileimageinput() {
         <>
             <Label
                 htmlFor="gambar">
-                <div className="text-xl bg-transparent border-dashed border-accent shadow-black/50 border-2 mt-3 font-bold w-35 rounded-full h-35 lg:w-1/2 flex flex-col gap-2 items-center justify-center text-accent lg:ml-0 overflow-hidden relative">
+                <div className="text-xl bg-transparent border-dashed border-accent shadow-black/50 border-2 mt-3 font-bold w-35 rounded-full h-35 lg:w-50 lg:h-50 flex flex-col gap-2 items-center justify-center text-accent lg:ml-0 overflow-hidden relative">
                     {change ? (
                         <>
                             <Image width={500} height={500} src={change} alt="preview" className="w-full h-full object-cover object-center rounded-md"

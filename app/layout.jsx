@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <SidebarProvider>        
             <SidebarInset>
               <div className="flex bg-background">
-                <main className="" >
+                <main className="pb-20" >
                   {children}
                 </main>
               </div>

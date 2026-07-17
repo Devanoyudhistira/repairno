@@ -47,7 +47,7 @@ export default function Slideitem({ image }) {
                     height={100}
                     key={i}
                     onClick={() => api.scrollTo(i)}
-                    className={`aspect-square object-cover rounded-md object-center lg:w-18 lg:h-18 w-10 h-10 transition ${current === i ? "border-4 border-primary" : "border-0 "}`}
+                    className={`aspect-square object-cover rounded-md object-center lg:w-18 lg:h-18 w-10 h-10 transition ${current === i ? "border-4 border-secondary" : "border-0 "}`}
                 />
             )}
         </div>

@@ -3,10 +3,21 @@ import Profileimageinput from "@/components/profile-image.-input";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel, FieldLegend } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import userid from "@/lib/userid";
+import { createClient } from "@/supabase/server";
 import { Chewy } from "next/font/google";
+import { redirect } from "next/navigation";
 const bubble = Chewy({weight:"400"})
 
-export default function Page() {
+export default async function Page() {
+    const supabaseauth = await createClient()
+    const {data} = await supabaseauth.auth.getSession()
+    if(!data.session){
+        redirect("/sign-up")
+    }    
+    if(await userid()){
+        redirect("/shop")
+    }
     return <main className="w-screen h-[95vh] overflow-hidden flex flex-col gap-5 items-center justify-end" >
         <h1 className={`text-secondary  ${bubble.className} -mt-8`} > <span className="text-6xl tracking-wider" > DevaCom </span> </h1>
         <form className="w-full flex flex-col rounded-t-3xl items-center mb-10 h-[75%] bg-accent-foreground justify-start px-3" action={createuser} >
