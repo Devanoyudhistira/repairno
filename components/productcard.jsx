@@ -13,23 +13,40 @@ import { deleteitem } from "@/action/shopcrud"
 import { toast } from "sonner"
 import Wishlistbutton from "./wishlist-button"
 
-export default function Productcard({ image, productname, harga, admin, id, stock,wishlist }) {
-    const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")        
+export default function Productcard({ image, productname, harga, admin, id, stock, wishlist }) {
+    const [state, deleteaction, pending] = useActionState(deleteitem.bind(null, id), "dsss")
     const [iswishlist, setiswishlist] = useState(wishlist)
     async function addwishlist() {
-        const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id:id,
-            }),
-        })
-        const response = await wishrequest.json()
-        if(response.success){
-            setiswishlist(true)
-        }        
+        if (wishlist) {
+            const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: id,
+                }),
+            })
+            const response = await wishrequest.json()
+            if (response.success) {
+                setiswishlist(true)
+            }
+        }
+        else {
+             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: id,
+                }),
+            })
+            const response = await wishrequest.json()
+            if (response.success) {
+                setiswishlist(false)
+            }
+        }
     }
     return <>
         <Card size="md" className={`border-0 bg-[#F8F8F8] m-0 h-70 lg:h-80 cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 ring-0 p-0 gap-0 dark:bg-transparent`} >

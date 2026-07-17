@@ -23,3 +23,10 @@ export async function POST(request) {
     success: true,
   });
 }
+
+export async function DELETE(request) {
+  const body = await request.json();
+  const user = await userid();
+  const { id } = body;
+  const { data, error } = await supabase.from("wishlist").delete().eq("id",id).eq("user",user) ;
+}
