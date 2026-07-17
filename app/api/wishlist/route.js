@@ -28,12 +28,14 @@ export async function DELETE(request) {
   const body = await request.json();
   const user = await userid();
   const { id } = body;
+  console.log(id)
   const { data, error } = await supabase
     .from("wishlist")
     .delete()
-    .eq("id", id)
+    .eq("item", id)
     .eq("user", user);
   console.log(data);
+  console.log(error);
   if (error) {
     console.log(error);
     return NextResponse.json({
