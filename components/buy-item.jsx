@@ -30,7 +30,7 @@ export default function Buyitem({ id, variant, data,allprice }) {
     }, [setvainfo, setconfirmbuy, state])
     return (
         <>
-            <Button onClick={() => setconfirmbuy(true)} variant="secondary" className={`text-primary bg-secondary w-full py-4 h-14 flex rounded-none font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
+            <Button onClick={() => setconfirmbuy(true)} variant="secondary" className={`text-primary bg-secondary w-full py-4 h-14 flex font-semibold text-xl`} size="lg"  >  Beli sekarang </Button>
             <Dialog onOpenChange={setconfirmbuy} open={confirmbuy} >
                 <DialogContent showCloseButton={false} >
                     <Card className={`px-1 py-2`} >

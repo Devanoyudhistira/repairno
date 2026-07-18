@@ -18,7 +18,7 @@ export default async function Navbar({ singlepage, addcontext }) {
                     <ChevronLeft className="size-8" /> </Button>
                 </Link>  {addcontext} </span>
             :
-            "Repair-no"}  </h1>
+            "devacom"}  </h1>
         <div>
            {!admin && <Link href={"/sign-up"} className="text-2xl font-medium text-secondary" > Login </Link>}
             {admin ? <Navadmin /> : <Modetoggle />}

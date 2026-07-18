@@ -7,16 +7,60 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader } from "./ui
 import { RadioGroup } from "./ui/radio-group";
 import { Separator } from "./ui/separator";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
 
-export default function Itemdetailcomponent({ data, variantdata, defaultname, categories, specdata }) {
-
+export default function Itemdetailcomponent({ data, variantdata, defaultname, categories, specdata, checkouted }) {
+    console.log(checkouted)
+    const router = useRouter()
+    console.log()
     const [variant, setvariant] = useState(defaultname)
     console.log(variant)
     const totalvariant = variant.reduce((total, item) => {
         return total + item.price;
     }, 0);
 
-    const totalprice = totalvariant + data.price    
+    async function addtocart() {
+        if (!checkouted) {
+            const cartrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: data.id,
+                }),
+            })
+            const response = await cartrequest.json()
+            if (response.success) {
+                router.refresh()
+                return response
+            }
+        }
+        else {
+            const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: data.id,
+                }),
+            })
+            const response = await wishrequest.json()
+            if (response.success) {
+                setwishlistmessage(response.message)
+                setiswishlist(false)
+                router.refresh()
+                return response
+            }
+        }
+    }
+
+    const totalprice = totalvariant + data.price
 
     return <Card className={`p-2 lg:ml-0 mr-3   min-h-130 max-h-max lg:min-h-max justify-between bg-transparent border-transparent border-0 border-none mt-2 w-[92%] lg:w-[70%] `} >
         <div className="flex flex-col gap-4 " >
@@ -73,6 +117,11 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
         </div>
         <CardAction className={`p-0 w-full`} >
             <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} />
+            <Button onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
+                {!checkouted ?
+                    <> add to cart <ShoppingCart className="size-6" /> </> :
+                    <> delete from cart <Trash2 className="size-6" /> </>}
+            </Button>
         </CardAction>
     </Card>
 }

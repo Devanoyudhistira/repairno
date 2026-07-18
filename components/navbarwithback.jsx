@@ -12,7 +12,7 @@ export default function Navbarback({backtarget}) {
             <Link href={backtarget} >
                 <Button size="icon" variant="ghost" > <ArrowLeft /> </Button>
             </Link>
-            <h1> Repair-no  </h1>
+            <h1> devacom  </h1>
         </div>
         <Modetoggle />
     </nav>)
