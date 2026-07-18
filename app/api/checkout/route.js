@@ -8,10 +8,11 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   const user = await userid();
   const body = await request.json();
-  const { id } = body;
+  const { id,variant } = body;
+  console.log(variant)
   const { error } = await supabase
     .from("checkout")
-    .insert({ checkout_item: id, checkout_user: user });
+    .insert({ checkout_item: id, checkout_user: user,checkout_variant:variant });
   if (error) {
     console.log(error);
     return NextResponse.json({

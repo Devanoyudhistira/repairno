@@ -32,6 +32,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 },
                 body: JSON.stringify({
                     id: data.id,
+                    variant:variant.map(e => e.id)
                 }),
             })
             const response = await cartrequest.json()

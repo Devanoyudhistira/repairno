@@ -75,7 +75,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
             }
         }
         else {
-            const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wishlist`, {
+            const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -109,10 +109,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
                         : <div className="w-full flex gap-1 lg:gap-3 items-center" >
                             <Link href={`/${id}`} className="self-end w-full" >
                                 <Button size="lg" variant="secondary" className={`w-full text-md font-semibold`} > Lihat barang </Button>
-                            </Link>
-                            <Button variant={`${checkout ? "default" : "outline"}`} onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "loading..", success: (response) => response.message, error: "gagal silahkan coba lagi" })} size="icon-lg" >
-                                {!checkout ? <ShoppingBag /> : <CheckCircle />}
-                            </Button>
+                            </Link>                            
                         </div>
                     }
                 </CardFooter>
