@@ -1,5 +1,6 @@
 "use server";
 
+import userid from "@/lib/userid";
 import supabase from "@/supabase/supabase";
 
 export async function purchase(id, variant, prev, formdata) {
@@ -17,17 +18,19 @@ export async function purchase(id, variant, prev, formdata) {
     .from("variant")
     .select("id")
     .in("id", variantid);
-  const {data:purchasedata,error:purchaseerror} = await supabase.from("payment-shop-history").insert({
-    quantity:"1",
-    item:shopitem.id,
-    total_money:shopitem.price,
-    status:"pending",
-    email,
-    customer_name:username,
-    phone:phone,
-    variant_item:variantitem.map(e => e.id) ,
-  })
-  console.log(purchaseerror)
+  const { data: purchasedata, error: purchaseerror } = await supabase
+    .from("payment-shop-history")
+    .insert({
+      quantity: "1",
+      item: shopitem.id,
+      total_money: shopitem.price,
+      status: "pending",
+      email,
+      customer_name: username,
+      phone: phone,
+      variant_item: variantitem.map((e) => e.id),
+    });
+  console.log(purchaseerror);
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/purchase`, {
     method: "POST",
     headers: {
@@ -45,4 +48,37 @@ export async function purchase(id, variant, prev, formdata) {
   const result = await response.json();
   console.log(result);
   return result;
+}
+
+export async function bulkpayment(item, variant,price,itemprice,itemname, prev, formdata) {
+  const user_id = await userid();
+  const order_id = `ORDER-${Math.ceil(Math.floor(Math.random() * 1000).toString())}`;
+  const allproduct = item.map((e, i) => ({
+    item: e,
+    variantdata: variant[i],
+    price:itemprice[i]
+  }));
+  const rows = allproduct.map((product) => ({
+    order_id,
+    item_id: product.item,
+    variant_order: product.variantdata,
+    price:product.price
+  }));
+  console.log(rows)
+  const { data, error } = await supabase.from("order_checkout").insert(rows);
+  console.log(data)
+  console.log(error)
+  const rowsid = rows.map((e,i) => e.item_id )
+  console.log( rowsid.forEach(e => e))
+  const { data: order, error: ordererror } = await supabase
+    .from("payment-shop-history")
+    .insert({
+      quantity: "1",
+      item: item[0],
+      total_money: price,
+      status: "pending",      
+      order_id:order_id
+    });
+    console.log(order)
+    console.log(ordererror)
 }

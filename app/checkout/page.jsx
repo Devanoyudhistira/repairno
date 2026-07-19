@@ -3,6 +3,7 @@ import Checkoutdetaillist from "@/components/checkout-detail.-list";
 import Detatiledlist from "@/components/detailedlist";
 import Navbar from "@/components/navbar";
 import Paymentradio from "@/components/paymentradio";
+import Pricedefault from "@/components/pricedetail";
 import Specdesk from "@/components/specdesc";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,8 +20,11 @@ export default async function page() {
     const { data, error } = await supabase.from("checkout").select("*,checkout_item(*)").eq("checkout_user", user_id)
     const totalprice = data.reduce((total, item) => {
         return total + item.checkout_item.price;
-    }, 0);    
-    console.log(data)
+    }, 0);
+    const allid = data.map(e => e.checkout_item.id)
+    const allprice = data.map(e => e.checkout_item.price)
+    const allvariant = data.map(e => e.checkout_variant)    
+    const allname = data.map(e => e.checkout_item.name)    
     return (
         <main className="w-screen" >
             <Navbar addcontext={"checkout"} />
@@ -43,14 +47,7 @@ export default async function page() {
                     </Card>
                 </div>
                 <div className="lg:w-1/2 w-full h-full px-4" >
-                    <Card className={"h-max "} >
-                        <CardHeader className={`text-md lg:text-lg font-semibold`} > metode pembayaran </CardHeader>
-                        <Separator />
-                        <CardContent>
-                            <Paymentradio />
-                        </CardContent>
-                        <CardAction className={"w-full px-3"} > <Button size="lg" variant="default" className={"w-full text-xl font-medium"} > Konfirmasi </Button> </CardAction>
-                    </Card>
+                    <Pricedefault itemarray={allid} price={totalprice} itemprice={allprice} itemaname={allname.join(" | ")} variantarray={allvariant} />
                 </div>
             </div>
         </main>

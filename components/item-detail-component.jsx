@@ -117,7 +117,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
             </div>
         </div>
         <CardAction className={`p-0 w-full`} >
-            <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} />
+            {/* <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} /> */}
             <Button onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
                 {!checkouted ?
                     <> add to cart <ShoppingCart className="size-6" /> </> :
