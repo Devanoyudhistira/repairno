@@ -77,7 +77,8 @@ export async function bulkpayment(item, variant,price,itemprice,itemname, prev, 
       item: item[0],
       total_money: price,
       status: "pending",      
-      order_id:order_id
+      order_id:order_id,
+      user_id
     });
     console.log(order)
     console.log(ordererror)
