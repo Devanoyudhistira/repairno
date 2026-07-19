@@ -12,7 +12,7 @@ const bubble = Chewy({weight:"400"})
 export default async function Page() {
     const supabaseauth = await createClient()
     const {data} = await supabaseauth.auth.getSession()
-    if(!data.session){
+    if(!data?.session){
         redirect("/sign-up")
     }    
     if(await userid()){
