@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation'
 import Link from "next/link"
 import { ShoppingBag } from "lucide-react"
 import { Heart } from "lucide-react"
+import { Clock1 } from "lucide-react"
+import { User } from "lucide-react"
 
 export default function Footnav() {
     const pathnow = usePathname()   
@@ -27,5 +29,10 @@ export default function Footnav() {
                 <ShoppingBag className="size-7" />
             </Button>
         </Link>
+        <Link href={"/history"} className="w-[50%] h-full" >
+            <Button size="xl " variant={isshop.includes("history") ? `secondary` : "link"} className={`w-full p-0 m-0 h-full flex items-center justify-center ${isshop.includes("history") ? "text-accent" : "text-primary"}`} >
+                <Clock1 className="size-7" />
+            </Button>
+        </Link>        
     </footer>
 }

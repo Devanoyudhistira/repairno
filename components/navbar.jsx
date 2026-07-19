@@ -15,6 +15,7 @@ export default async function Navbar({ singlepage, addcontext }) {
     const isadmin = await supabaseauth.auth.getSession()
     const admin = isadmin.data.session
     const realadmin = await useradmin()
+    console.log(realadmin)
     const profileimage = await userimage()
     return (<nav className="w-full h-14 border-secondary border-b-2 flex items-center justify-between px-3" >
         <h1 className="text-primary font-semibold text-xl" > {singlepage ?
@@ -24,7 +25,8 @@ export default async function Navbar({ singlepage, addcontext }) {
                 </Link>  {addcontext} </span>
             :
             "devacom"}  </h1>
-        { !realadmin ? <Image src={imageurl(`/profile/${profileimage}`)} className="w-10 h-10 mr-3 rounded-full object-center object-cover" alt={profileimage} width={100} height={100} />  : <div>
+        { !realadmin ? <Image src={imageurl(`/profile/${profileimage}`)} className="w-10 h-10 mr-3 rounded-full object-center object-cover" alt={profileimage} width={100} height={100} />  : 
+        <div>
            {!admin && <Link href={"/sign-up"} className="text-2xl font-medium text-secondary" > Login </Link>}
             {admin ? <Navadmin /> : <Modetoggle />}
         </div>}
