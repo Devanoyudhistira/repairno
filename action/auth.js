@@ -3,6 +3,7 @@
 import { createClient } from "@/supabase/server";
 import supabase from "@/supabase/supabase";
 import supabaseforimage from "@/supabase/supabaseforimage";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -43,6 +44,7 @@ export async function signout() {
   const supabase = await createClient();
   const { error } = await supabase.auth.signOut();
   if (error) console.log(error);
+  revalidatePath("/")
 }
 
 export async function createuser(formdata) {  
@@ -70,6 +72,7 @@ export async function createuser(formdata) {
   if (usererror) console.log(usererror);
   const upload = await supabaseforimage.upload(`profile/${finalname}`, userimage);
   if(userdata){
+    revalidatePath("/signupform")
     redirect("/shop")
   }
 }
