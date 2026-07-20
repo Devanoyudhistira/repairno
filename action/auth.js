@@ -69,4 +69,7 @@ export async function createuser(formdata) {
   console.log(userdata);
   if (usererror) console.log(usererror);
   const upload = await supabaseforimage.upload(`profile/${finalname}`, userimage);
+  if(userdata){
+    redirect("/shop")
+  }
 }
