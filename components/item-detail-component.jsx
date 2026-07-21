@@ -16,6 +16,7 @@ import { Trash2 } from "lucide-react";
 export default function Itemdetailcomponent({ data, variantdata, defaultname, categories, specdata, checkouted }) {
     console.log(checkouted)
     const router = useRouter()
+    const [loading, setloading] = useState(false)
     console.log()
     const [variant, setvariant] = useState(defaultname)
     console.log(variant)
@@ -24,6 +25,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
     }, 0);
 
     async function addtocart() {
+        setloading(true)
         if (!checkouted) {
             const cartrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
                 method: "POST",
@@ -32,7 +34,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 },
                 body: JSON.stringify({
                     id: data.id,
-                    variant:variant.map(e => e.id)
+                    variant: variant.map(e => e.id)
                 }),
             })
             const response = await cartrequest.json()
@@ -40,6 +42,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 router.refresh()
                 return response
             }
+            setloading(false)
         }
         else {
             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
@@ -58,6 +61,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
                 router.refresh()
                 return response
             }
+            setloading(false)
         }
     }
 
@@ -118,7 +122,7 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
         </div>
         <CardAction className={`p-0 w-full`} >
             {/* <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} /> */}
-            <Button onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
+            <Button disabled={loading} onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
                 {!checkouted ?
                     <> add to cart <ShoppingCart className="size-6" /> </> :
                     <> delete from cart <Trash2 className="size-6" /> </>}

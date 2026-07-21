@@ -9,6 +9,7 @@ import { Open_Sans } from "next/font/google";
 import { Field } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import Formlogin from "@/components/formlogin";
 
 
 const cursive = Open_Sans({
@@ -19,13 +20,11 @@ export default function Page() {
         <h1 className={`text-6xl mt-12 ${cursive.className} font-bold text-secondary capitalize`} > DevanoCom </h1>
         <h2 className="text-xl px-4 text-center mt-1 capitalize font-medium text-secondary" > find and buy the best electronic device for your life </h2>
         <Card className={`w-full border-0 ring-0 outline-0 self-center bg-transp justify-self-center mt-30 px-10`} >
-            <form className="w-full flex i tems-center justify-center" action={signIn} >
-                <Button size="lg" variant="secondary" className={`bg-secondary h-15 w-full font-semibold text-white capitalize text-3xl`} > login </Button>
-            </form>
+            <Formlogin/>
             <Separator className={`h-20 bg-secondary -mb-3`} />
             <h1 className="text-secondary self-center font-black text-xl" > Don't have account ? </h1>
             <form className="w-full flex i tems-center justify-center" action={signIn} >
-                <Button size="lg" variant="outline" className={`font-semibold border-secondary w-full -mt-4 h-15 text-secondary text-3xl`} > sign up</Button>
+                <Button size="lg" variant="outline" className={`font-semibold border-secondary w-full -mt-4 h-15 text-secondary text-3xl`} > sign up </Button>
         </form>
     </Card>
 
