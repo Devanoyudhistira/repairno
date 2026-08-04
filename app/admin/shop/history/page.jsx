@@ -27,7 +27,7 @@ export default async function Page({ searchParams }) {
     let alldata = supabase.from("payment_shop_history_view").select("*,item!inner(name)", { count: "exact" }).order(currentsort, { ascending: ascending })
 
     if (search && search.length >= 1) {
-        alldata = alldata.or(`customer_name.ilike.%${search}%,item_name.ilike.%${search}%`); 
+        alldata = alldata.or(`user_name.ilike.%${search}%,item_name.ilike.%${search}%`); 
         console.log((await alldata).data )
         console.log((await alldata).error )
     }
@@ -61,12 +61,12 @@ export default async function Page({ searchParams }) {
                         <TableRow key={e.id} >
                             <Tabledata value={e.id} />
                             <Tabledata value={e.item?.name} />
-                            <Tablevariant variantarray={e.variant_item} value={e.variant_item[0]} />
+                            <Tablevariant variantarray={e?.variant_item}  />
                             <Tabledata value={convertToMoney(e.total_money)} />
                             <Tabledata value={e.quantity} />
-                            <Tabledata value={e.customer_name} />
-                            <Tabledata value={e.phone} />
-                            <Tabledata value={e.email} />
+                            <Tabledata value={e.user_name} />
+                            <Tabledata value={e.user_number} />
+                            <Tabledata value={e.user_email} />
                             <Tabledata textcolor={e.status === "pending" ? "text-warning bg-warning/10 px-1.5 py-1 rounded-2xl w-min h-min" : "text-success bg-success/10 px-1.5 py-1 rounded-2xl w-min h-min "} value={e.status} />
                             <Tabledata value={moment(e.created_at).locale("ID").format("MMMM D yyyy")} />
                             <TableCell> <Dropdownmenurepair deletedescription={`tindakan ini akan data penjualan anda yakin ?.`} deletetitle={"hapus data ?"} deleteaction={deletedata} shopstatus={true} statusupdate={changestatus} id={e.id} /> </TableCell>
