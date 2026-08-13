@@ -2,7 +2,10 @@
 
 import userid from "@/lib/userid";
 import supabase from "@/supabase/supabase";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function purchase(id, variant, prev, formdata) {
   const username = formdata.get("customer-name");
   const phone = formdata.get("customer-phone");
@@ -50,36 +53,60 @@ export async function purchase(id, variant, prev, formdata) {
   return result;
 }
 
-export async function bulkpayment(item, variant,price,itemprice,itemname, prev, formdata) {
+export async function bulkpayment(
+  item,
+  variant,
+  price,
+  itemprice,
+  itemname,
+  prev,
+  formdata,
+) {
   const user_id = await userid();
   const order_id = `ORDER-${Math.ceil(Math.floor(Math.random() * 1000).toString())}`;
   const allproduct = item.map((e, i) => ({
     item: e,
     variantdata: variant[i],
-    price:itemprice[i]
+    price: itemprice[i],
   }));
   const rows = allproduct.map((product) => ({
     order_id,
     item_id: product.item,
     variant_order: product.variantdata,
-    price:product.price
+    price: product.price,
   }));
-  console.log(rows)
-  const { data, error } = await supabase.from("order_checkout").insert(rows);
-  console.log(data)
-  console.log(error)
-  const rowsid = rows.map((e,i) => e.item_id )
-  console.log( rowsid.forEach(e => e))
+  console.log(rows);
+  const { data, error } = await supabase.from("order_checkout").insert(rows);  
+  const rowsid = rows.map((e, i) => e.item_id);
+  const session = await stripe.checkout.sessions.create({
+    mode: "payment",
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "item",
+          },
+          unit_amount: price, // $10.00
+        },
+        quantity: 1,
+      },
+    ],
+    success_url: process.env.NEXT_PUBLIC_URL,
+    cancel_url: process.env.NEXT_PUBLIC_URL,
+  });
+
+  console.log(session)
+
   const { data: order, error: ordererror } = await supabase
     .from("payment-shop-history")
     .insert({
       quantity: "1",
       item: item[0],
       total_money: price,
-      status: "pending",      
-      order_id:order_id,
-      user_id
+      status: "pending",
+      order_id: order_id,
+      user_id,
     });
-    console.log(order)
-    console.log(ordererror)
+    redirect(session.url)  
 }
