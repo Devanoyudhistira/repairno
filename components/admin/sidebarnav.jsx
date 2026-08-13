@@ -49,14 +49,8 @@ export default function Sidebarnav({ userimage }) {
         </SidebarMenuItem>
         <Sidebargroupitem labelname={"shop admin section"} Icon={ShoppingCart} pagename={"shop function"} >
             <Sidebarlink Icon={Building} name={"shop main page"} linktarget={"/admin/shop"} />
-            <Sidebarlink Icon={Plus} name={"buat dagangan"} linktarget={"/admin/shop/create"} />
-            <Sidebarlink Icon={Clock} name={"lihat riwayat"} linktarget={"/admin/shop/history"} />
-        </Sidebargroupitem>
-        <Sidebargroupitem labelname={"repair admin section"} Icon={WrenchIcon} pagename={"repair function"} >
-            <Sidebarlink Icon={Plus} name={"repair main page"} linktarget={"/admin/repair"} />
-            <Sidebarlink Icon={Hammer} name={"buat project"} linktarget={"/admin/repair/create"} />
-            <Sidebarlink Icon={Clock} name={"lihat riwayat perbaikan "} linktarget={"/admin/repair/history"} />
-            <Sidebarlink Icon={LayoutDashboardIcon} name={"lihat data perbaikan"} linktarget={"/admin/repair/dashboard"} />
-        </Sidebargroupitem>
+            <Sidebarlink Icon={Plus} name={"create item"} linktarget={"/admin/shop/create"} />
+            <Sidebarlink Icon={Clock} name={"see dashboard"} linktarget={"/admin/shop/history"} />
+        </Sidebargroupitem>        
     </Sidebar>
 }

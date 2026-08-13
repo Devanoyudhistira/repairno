@@ -36,7 +36,7 @@ export default function Repaircard({ itemname, username, id, problem, status, im
                 <CardAction >
                     <Link href={`/${id}`} >
                         <Button size="xs" variant="link" className={`flex gap-1 lg:mt-0 items-center`} >
-                            lihat barang <ArrowRight />
+                            see item <ArrowRight />
                         </Button>
                     </Link>
                 </CardAction>

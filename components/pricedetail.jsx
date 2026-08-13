@@ -9,14 +9,14 @@ import { Separator } from "./ui/separator";
 export default function Pricedefault({itemarray,variantarray,price,itemprice,itemaname}) {
     const [state,buyaction,pending] = useActionState(bulkpayment.bind(null,itemarray,variantarray,price,itemprice,itemaname),null)
     return <Card className={"h-max "} >
-        <CardHeader className={`text-md lg:text-lg font-semibold`} > metode pembayaran </CardHeader>
+        <CardHeader className={`text-md lg:text-lg font-semibold`} > payment method </CardHeader>
         <Separator />
         <CardContent>
             <Paymentradio />
         </CardContent>
         <CardAction className={"w-full px-3"} >
             <form action={buyaction} className="w-full" >
-                <Button size="lg" variant="default" className={"w-full text-xl font-medium"} > Konfirmasi </Button>
+                <Button size="lg" variant="default" className={"w-full text-xl font-medium"} > Confirm </Button>
             </form>
         </CardAction>
     </Card>

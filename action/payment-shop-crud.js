@@ -13,8 +13,7 @@ export async function changestatus(id, status, prevState, formData) {
     .eq("id", id)
     .select("*")
     .single();
-
-  console.log(data);
+  
   revalidatePath("/admin/shop/history");
 }
 export async function deletedata(id, status, prevState, formData) {
@@ -24,7 +23,5 @@ export async function deletedata(id, status, prevState, formData) {
     .eq("id", id)
     .select("*")
     .single();
-
-  console.log(data);
   revalidatePath("/admin/shop/history");
 }

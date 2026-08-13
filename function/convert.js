@@ -2,7 +2,7 @@
     const number = Number(price.toString().replace(/\./g, ""));
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
-            currency: "IDR",
+            currency: "USD",
             minimumFractionDigits: 0,
             maximumFractionDigits: 0
         }).format(number);

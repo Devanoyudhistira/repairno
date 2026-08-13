@@ -60,7 +60,7 @@ export default function Buyitem({ id, variant, data,allprice }) {
                                 <FieldLabel> tolong masukan nomer yang masih aktif </FieldLabel>
                                 <Input className={"invalid:border-destructive invalid:ring-2 invalid:ring-destructive invalid:outline-none  "} required name="customer-phone" type={"number"} />
                             </Field>
-                            <FieldLabel> Pilih metode pembayaran anda </FieldLabel>
+                            <FieldLabel> choose your payment method </FieldLabel>
                             <Paymentmethod />
                             <FieldSeparator className={"-mb-6 -mt-4"} />
                             <div className="w-full  items-center flex justify-center gap-2" >

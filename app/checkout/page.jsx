@@ -23,8 +23,8 @@ export default async function page() {
     }, 0);
     const allid = data.map(e => e.checkout_item.id)
     const allprice = data.map(e => e.checkout_item.price)
-    const allvariant = data.map(e => e.checkout_variant)    
-    const allname = data.map(e => e.checkout_item.name)    
+    const allvariant = data.map(e => e.checkout_variant)
+    const allname = data.map(e => e.checkout_item.name)
     return (
         <main className="w-screen" >
             <Navbar addcontext={"checkout"} />
@@ -39,10 +39,10 @@ export default async function page() {
                                 <Checkoutcard id={e.checkout_item.id} variant_id={e.checkout_variant} price={e.checkout_item.price} gambar={imageurl(e.checkout_item.gambar)} name={e.checkout_item.name} key={e.id} />
                             )}
                         </CardContent>
-                        <CardFooter className={`w-full gap-2 flex-col p-0 px-5`} >
-                            <Checkoutdetaillist category={"subtotal"} value={"20.000"} />
-                            <Checkoutdetaillist category={"ongkir"} value={"20.000"} />
-                            <Checkoutdetaillist category={"total"} value={convertToMoney(totalprice)} />
+                        <CardFooter className="w-full gap-2 flex-col p-0 px-5">
+                            <Checkoutdetaillist category="Subtotal" value={convertToMoney(5)} />
+                            <Checkoutdetaillist category="Shipping fee" value={convertToMoney(5)} />
+                            <Checkoutdetaillist category="Total" value={convertToMoney(totalprice + 5 )} />
                         </CardFooter>
                     </Card>
                 </div>

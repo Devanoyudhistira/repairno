@@ -39,7 +39,7 @@ export default function Dropdownmenurepair({ statusupdate,deleteaction, id,shops
                     </DropdownMenuPortal>
                 </DropdownMenuSub>
                 <DropdownMenuItem onClick={""} variant="link" >
-                    <Link href={"/"} className="flex items-center gap-2" > <Eye /> lihat barang  </Link>
+                    <Link href={"/"} className="flex items-center gap-2" > <Eye /> see item  </Link>
                 </DropdownMenuItem>
             { !!shopstatus && <DropdownMenuItem onClick={ () => setdeletealert(true)} variant="destructive" >
                     <TrashIcon /> delete

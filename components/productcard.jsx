@@ -40,7 +40,7 @@ export default function Productcard({ image, productname, harga, admin, id, stoc
                     {admin ? <Dropdownshop deleteaction={deleteaction} initialstock={stock} initialname={productname} initialprice={harga} id={id} />
                         : <div className="w-full flex gap-1 lg:gap-3 items-center" >
                             <Link href={`/${id}`} className="self-end w-full" >
-                                <Button size="lg" variant="secondary" className={`w-full text-md font-semibold`} > Lihat barang </Button>
+                                <Button size="lg" variant="secondary" className={`w-full text-md font-semibold`} > see item </Button>
                             </Link>                            
                         </div>
                     }

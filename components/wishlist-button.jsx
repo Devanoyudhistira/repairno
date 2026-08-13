@@ -7,8 +7,7 @@ import { toast } from "sonner"
 
 export default function Wishlistbutton({ handle, wishlisht ,id,setiswishlist}) {
     const [isloading, setloading] = useState(false)
-    const router = useRouter()
-    console.log("Dadad")
+    const router = useRouter()    
     console.log(isloading)
     const bodydata = JSON.stringify({ id: id })
     async function addwishlist() { 
