@@ -27,9 +27,7 @@ export default async function Page({ searchParams }) {
     let alldata = supabase.from("payment_shop_history_view").select("*,item!inner(name)", { count: "exact" }).order(currentsort, { ascending: ascending })
 
     if (search && search.length >= 1) {
-        alldata = alldata.or(`user_name.ilike.%${search}%,item_name.ilike.%${search}%`); 
-        console.log((await alldata).data )
-        console.log((await alldata).error )
+        alldata = alldata.or(`user_name.ilike.%${search}%,item_name.ilike.%${search}%`);      
     }
     const {data,error,count} = await alldata
     console.log(error)

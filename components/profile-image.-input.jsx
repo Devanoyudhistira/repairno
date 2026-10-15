@@ -8,7 +8,6 @@ import { FieldLabel } from "./ui/field"
 import { useRef, useState } from "react"
 
 export default function Profileimageinput() {
-    const [preview, setPreview] = useState(null)
     const [change,setchange] = useState()
     const inputRef = useRef(null)
 

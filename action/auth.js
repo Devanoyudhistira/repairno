@@ -18,7 +18,7 @@ export async function login(prev, formdata) {
   if (error) {
     return {
       error: true,
-      message: "identitas tidak dikenal silahkan coba lagi",
+      message: "unknown identity please try again",
     };
   }
   redirect("/admin");

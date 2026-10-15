@@ -9,8 +9,7 @@ export default async function Layout({ children }) {
     const supabasauth = await createClient()
 
     const { data, error } = await supabasauth.auth.getSession()
-    const {data:userdata} = await supabasauth.auth.getUser()
-    console.log(userdata.user.identities[0].identity_data.avatar_url)    
+    const {data:userdata} = await supabasauth.auth.getUser()    
 
     if (!data.session) {
         redirect("/")

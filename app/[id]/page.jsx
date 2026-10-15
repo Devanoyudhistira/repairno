@@ -24,10 +24,10 @@ export default async function Page({ params }) {
         )
     ];
     const defaultgroup = variantdata.filter(e => e.default_variant)
-    console.log(variantdata)
+
     const defaultname = defaultgroup.map(e => ({ category: e.variant_category,id: e.id,name:e.name,price:e.variant_price }))
     const { data: checkout, error: checkouterror } = await supabase.from("checkout").select("checkout_item").eq("checkout_user", user_id).eq("checkout_item",id).single()
-    console.log(checkout)
+    
     return (
         <div>
             <Toaster closeButton  />

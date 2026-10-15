@@ -4,8 +4,7 @@ import userid from "@/lib/userid";
 import supabase from "@/supabase/supabase";
 
 export default async function page(params) {
-    const { data, error } = await supabase.from("wishlist").select("item(*)")
-    console.log(data)
+    const { data, error } = await supabase.from("wishlist").select("item(*)")    
     const user_id = await userid()
     return (
         <>

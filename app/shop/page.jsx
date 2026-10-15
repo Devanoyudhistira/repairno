@@ -23,8 +23,7 @@ export default async function Page({ searchParams }) {
     const checkoutSet = new Set(
         checkout.map(item => item.checkout_item)
     );
-        
-    console.log(checkoutSet)
+            
     let alldata = supabase.from("shop").select("*", { count: "exact" })
     const searchquery = search && search.length >= 1
     const activesearch = searchquery
@@ -58,8 +57,7 @@ export default async function Page({ searchParams }) {
     ]
 
 
-    const { data, error } = await alldata
-    console.log(data.length)
+    const { data, error } = await alldata    
     return <main className="text-primary pb-22" >
         <Toaster closeButton  />
         <Navbar />

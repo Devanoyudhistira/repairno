@@ -5,8 +5,7 @@ import supabase from "@/supabase/supabase";
 
 export default async function Page() {
     const user_id = await userid()
-    const {data,error} = await supabase.from("payment-shop-history").select("*").eq("user_id",user_id)
-    console.log(data)    
+    const {data,error} = await supabase.from("payment-shop-history").select("*").eq("user_id",user_id)    
     return <main className="w-screen flex flex-col gap-2" >
         <Navbar addcontext={"history"} />
         <h1 className="text-xl lg:text-2xl text-secondary uppercase ml-3" > Your History </h1>

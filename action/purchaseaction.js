@@ -32,8 +32,7 @@ export async function purchase(id, variant, prev, formdata) {
       customer_name: username,
       phone: phone,
       variant_item: variantitem.map((e) => e.id),
-    });
-  console.log(purchaseerror);
+    });  
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/purchase`, {
     method: "POST",
     headers: {
@@ -48,8 +47,7 @@ export async function purchase(id, variant, prev, formdata) {
       id,
     }),
   });
-  const result = await response.json();
-  console.log(result);
+  const result = await response.json();  
   return result;
 }
 
@@ -74,8 +72,7 @@ export async function bulkpayment(
     item_id: product.item,
     variant_order: product.variantdata,
     price: product.price,
-  }));
-  console.log(rows);
+  }));  
   const { data, error } = await supabase.from("order_checkout").insert(rows);  
   const rowsid = rows.map((e, i) => e.item_id);
   const session = await stripe.checkout.sessions.create({
@@ -87,7 +84,7 @@ export async function bulkpayment(
           product_data: {
             name: "item",
           },
-          unit_amount: price, // $10.00
+          unit_amount: price, 
         },
         quantity: 1,
       },
@@ -95,8 +92,7 @@ export async function bulkpayment(
     success_url: process.env.NEXT_PUBLIC_URL,
     cancel_url: process.env.NEXT_PUBLIC_URL,
   });
-
-  console.log(session)
+  
 
   const { data: order, error: ordererror } = await supabase
     .from("payment-shop-history")
