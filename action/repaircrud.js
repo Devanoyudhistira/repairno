@@ -24,8 +24,8 @@ export async function deleterepair(id, prev, formdata) {
   console.log(id);
   revalidatePath("/admin/repair");
   revalidatePath("/");
-  if (error) return { message: "penghapusan gagal", error: true };
-  return { message: "penghapusan berhasil", error: false };
+  if (error) return { message: "delete failed", error: true };
+  return { message: "delete success", error: false };
 }
 export async function createrepair(prev, formdata) {
   const merkname = formdata.get("namamerk");

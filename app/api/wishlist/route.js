@@ -48,7 +48,7 @@ export async function DELETE(request) {
   }
   revalidatePath("/wishlist");
   return NextResponse.json({
-    message:"produk berhasil dihapus",
+    message:"Product has been succesfully deleted",
     success: true,
   });
 }

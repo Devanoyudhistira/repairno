@@ -44,7 +44,7 @@ export async function DELETE(request) {
     });
   }
   return NextResponse.json({
-    message:"produk berhasil dihapus",
+    message:"product has been successfully deleted",
     success: true,
   });
 }

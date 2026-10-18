@@ -13,6 +13,7 @@ import convertToMoney from "@/function/convert";
 import imageurl from "@/lib/imageurl";
 import userid, { userimage } from "@/lib/userid";
 import supabase from "@/supabase/supabase";
+import { Archive } from "lucide-react";
 import Image from "next/image";
 
 export default async function page() {
@@ -35,6 +36,16 @@ export default async function page() {
                         <CardHeader className={`text-md lg:text-lg  font-semibold`} >Order summary</CardHeader>
                         <Separator />
                         <CardContent className={`p-0 px-1 h-60 overflow-y-auto  `} >
+                            {data.length <= 0 ?
+                                <div className="w-full h-full flex flex-col items-center justify-center" >
+                                    <Archive className="size-14 lg:size-30" />
+                                    <h1 className="text-lg" > You have no checkout item </h1>
+                                </div>
+                                :
+                                data.map(e =>
+                                    <Checkoutcard id={e.checkout_item.id} variant_id={e.checkout_variant} price={e.checkout_item.price} gambar={imageurl(e.checkout_item.gambar)} name={e.checkout_item.name} key={e.id} />
+                                )
+                            }
                             {data.map(e =>
                                 <Checkoutcard id={e.checkout_item.id} variant_id={e.checkout_variant} price={e.checkout_item.price} gambar={imageurl(e.checkout_item.gambar)} name={e.checkout_item.name} key={e.id} />
                             )}
@@ -42,7 +53,7 @@ export default async function page() {
                         <CardFooter className="w-full gap-2 flex-col p-0 px-5">
                             <Checkoutdetaillist category="Subtotal" value={convertToMoney(5)} />
                             <Checkoutdetaillist category="Shipping fee" value={convertToMoney(5)} />
-                            <Checkoutdetaillist category="Total" value={convertToMoney(totalprice + 5 )} />
+                            <Checkoutdetaillist category="Total" value={convertToMoney(totalprice + 10)} />
                         </CardFooter>
                     </Card>
                 </div>
