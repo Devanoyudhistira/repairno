@@ -25,5 +25,5 @@ export default function Deletecheckout({id}) {
         router.refresh()
         return response
     }
-    return <Button onClick={() => toast.promise(deletecart, { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} size="icon-sm" variant="outline" > <Trash2 /> </Button>
+    return <Button onClick={() => toast.promise(deletecart, { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "operation failed try again" })} size="icon-sm" variant="outline" > <Trash2 /> </Button>
 }

@@ -46,7 +46,7 @@ export default function Wishlistbutton({ handle, wishlisht ,id,setiswishlist}) {
             setloading(false)
         }
     }
-    return <button disabled={isloading} onClick={() => toast.promise(addwishlist(), { position: "top-center", loading: "loading..", success: (response) => response.message, error: "gagal silahkan coba lagi" })}
+    return <button disabled={isloading} onClick={() => toast.promise(addwishlist(), { position: "top-center", loading: "loading..", success: (response) => response.message, error: "operation failed try again" })}
         className="absolute top-2 left-3" >
         <Heart className={`text-red-700 size-8 transition ${wishlisht && 'fill-red-700'} `} />
     </button>

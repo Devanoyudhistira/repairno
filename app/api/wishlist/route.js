@@ -24,7 +24,7 @@ export async function POST(request) {
   revalidatePath("/wishlist");
   return NextResponse.json({
     success: true,
-    message:"produk berhasil ditambahkan"
+    message:"Product succesfully added to wishlist"
   });
 }
 

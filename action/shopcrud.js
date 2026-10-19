@@ -11,11 +11,11 @@ export async function restock(id, jumlah, prev, formdata, ...args) {
     .update({ stock: jumlah })
     .eq("id", id);
   if (error) {
-    return { error: true, message: "perubahan gagal" };
+    return { error: true, message: "Update failed" };
   }
   revalidatePath("/admin/shop");
   revalidatePath("/shop");
-  return { success: true, message: "perubahan berhasil" };
+  return { success: true, message: "update succedd" };
 }
 // update nama
 export async function updatename(id, prev, formdata) {
@@ -27,8 +27,8 @@ export async function updatename(id, prev, formdata) {
 
   revalidatePath("/admin/shop");
   revalidatePath("/shop");
-  if (error) return { message: "perubahan nama gagal", error: true };
-  return { message: "perubahan nama berhasil", success: true };
+  if (error) return { message: "Name update failed", error: true };
+  return { message: "Name update succedd", success: true };
 }
 
 export async function deleteitem(id, prev, formdata) {
@@ -46,8 +46,8 @@ export async function updateprice(id, prev, formdata) {
     .eq("id", id);
   revalidatePath("/admin/shop");
   revalidatePath("/shop");
-  if (error) return { message: "perubahan harga gagal", error: true };
-  return { message: "perubahan harga berhasil", success: true };
+  if (error) return { message: "Update price failed", error: true };
+  return { message: "Update price succedd", success: true };
 }
 
 export async function createitem(prev, formdata) {

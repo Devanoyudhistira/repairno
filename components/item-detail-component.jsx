@@ -13,12 +13,12 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
 
-export default function Itemdetailcomponent({ data, variantdata, defaultname, categories, specdata, checkouted }) {
-    console.log(checkouted)
+export default function Itemdetailcomponent({ data, variantdata, defaultname, categories, specdata, checkouted }) {    
     const router = useRouter()
     const [loading, setloading] = useState(false)
     console.log()
     const [variant, setvariant] = useState(defaultname)
+    const [checkout,setcheckout] = useState(checkouted)
     console.log(variant)
     const totalvariant = variant.reduce((total, item) => {
         return total + item.price;
@@ -40,9 +40,10 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
             const response = await cartrequest.json()
             if (response.success) {
                 router.refresh()
+                setloading(false)
+                setcheckout(true)
                 return response
             }
-            setloading(false)
         }
         else {
             const wishrequest = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/checkout`, {
@@ -56,13 +57,15 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
             })
             const response = await wishrequest.json()
             if (response.success) {
-                setwishlistmessage(response.message)
-                setiswishlist(false)
+                console.log(response)
+                setloading(false)
+                setcheckout(false)                
                 router.refresh()
                 return response
             }
             setloading(false)
         }
+        setloading(false)
     }
 
     const totalprice = totalvariant + data.price
@@ -122,8 +125,8 @@ export default function Itemdetailcomponent({ data, variantdata, defaultname, ca
         </div>
         <CardAction className={`p-0 w-full`} >
             {/* <Buyitem allprice={totalprice} data={data} variant={variant} id={data?.id} /> */}
-            <Button disabled={loading} onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message, error: "gagal silahkan coba lagi" })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
-                {!checkouted ?
+            <Button disabled={loading} onClick={() => toast.promise(addtocart(), { position: "top-center", loading: "Loading...", success: (response) => response.message })} className={`w-full text-xl h-14 font-semibold text-secondary mt-2`} size="lg" variant="default"  >
+                {!checkout ?
                     <> add to cart <ShoppingCart className="size-6" /> </> :
                     <> delete from cart <Trash2 className="size-6" /> </>}
             </Button>

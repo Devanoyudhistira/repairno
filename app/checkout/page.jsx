@@ -46,15 +46,12 @@ export default async function page() {
                                     <Checkoutcard id={e.checkout_item.id} variant_id={e.checkout_variant} price={e.checkout_item.price} gambar={imageurl(e.checkout_item.gambar)} name={e.checkout_item.name} key={e.id} />
                                 )
                             }
-                            {data.map(e =>
-                                <Checkoutcard id={e.checkout_item.id} variant_id={e.checkout_variant} price={e.checkout_item.price} gambar={imageurl(e.checkout_item.gambar)} name={e.checkout_item.name} key={e.id} />
-                            )}
                         </CardContent>
-                        <CardFooter className="w-full gap-2 flex-col p-0 px-5">
+                        {data.length > 0 && <CardFooter className="w-full gap-2 flex-col p-0 px-5">
                             <Checkoutdetaillist category="Subtotal" value={convertToMoney(5)} />
                             <Checkoutdetaillist category="Shipping fee" value={convertToMoney(5)} />
                             <Checkoutdetaillist category="Total" value={convertToMoney(totalprice + 10)} />
-                        </CardFooter>
+                        </CardFooter>}
                     </Card>
                 </div>
                 <div className="lg:w-1/2 w-full h-full px-4" >

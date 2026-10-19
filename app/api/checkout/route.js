@@ -21,7 +21,7 @@ export async function POST(request) {
   }  
   return NextResponse.json({
     success: true,
-    message: "produk berhasil ditambahkan ke checkout",
+    message: "Product successfully added to checkout",
   });
 }
 
