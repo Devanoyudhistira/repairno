@@ -21,12 +21,12 @@ export default function Slideitem({ image }) {
     }, [api, setCount])
 
 
-    const data = [image, "/image/case.jpg", "/image/cooler.jpg"]
-    return <div className="flex flex-col  w-full   lg:w-1/2" >
+    const data = [image]
+    return <div className="flex flex-col  w-full py-10  lg:w-1/2" >
         <Carousel className={`h-full lg:mt-0 mt-10 lg:-mb-16 p-0  ml-3`} setApi={setapi} >
             <CarouselContent className={"w-full h-full p-0 bg-transparent"} >
                 {data.map((e, index) => (
-                    <CarouselItem className={"bg-transparent p-0 border-0"} key={index}>
+                    <CarouselItem className={"bg-transparent p-0 py-2 border-0"} key={index}>
                         <div className="flex items-center justify-center w-full h-max">
                             <Card className={"w-full ring-0 p-0 bg-transparent border-0"} >
                                 <CardContent className="flex border-0 p-0 overflow-hidden aspect-square  items-center justify-center">
@@ -38,7 +38,7 @@ export default function Slideitem({ image }) {
                 ))}
             </CarouselContent>
         </Carousel>
-        <div className="flex items-center ml-5 lg:mt-20 gap-6 mt-4" >
+        {/* <div className="flex items-center ml-5 lg:mt-20 gap-6 mt-4" >
             {data.map((e, i) =>
                 <Image
                     src={e}
@@ -50,6 +50,6 @@ export default function Slideitem({ image }) {
                     className={`aspect-square object-cover rounded-md object-center lg:w-18 lg:h-18 w-10 h-10 transition ${current === i ? "border-4 border-secondary" : "border-0 "}`}
                 />
             )}
-        </div>
+        </div> */}
     </div>
 }

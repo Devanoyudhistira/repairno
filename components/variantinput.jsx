@@ -27,12 +27,10 @@ export default function Variantinput() {
                             placeholder="Variant name"
                             name="variant_name"
                         />
-
                         <Input
                             placeholder="Category"
                             name="category_variant"
                         />
-
                         <NumericFormat
                             customInput={Input}
                             thousandSeparator="."
@@ -40,7 +38,7 @@ export default function Variantinput() {
                             placeholder="Price"
                             name="harga_variant"
                             id="harga_variant"
-                        />
+                        />                        
                     </InputGroup>
                 ))}
             </div>

@@ -54,10 +54,11 @@ export async function createitem(prev, formdata) {
   const name = formdata.get("nama");
   const variant_name = formdata.getAll("variant_name");
   const variant_category = formdata.getAll("category_variant");
-  const variant_price = formdata.getAll("harga_variant");  
+  const variant_price = formdata.getAll("harga_variant");
   const harga = Number(formdata.get("harga").replace(/\./g, ""));
   const image = formdata.get("gambar");
   const extension = image.name.split(".").at(-1);
+
 
   const finalname =
     Math.random()
@@ -76,18 +77,20 @@ export async function createitem(prev, formdata) {
     })
     .select("id")
     .single();
-    console.log(error)
-    console.log(data)
+  console.log(error);
+  console.log(data);
   const allvariant = variant_category.map((category, i) => ({
     variant_category: category,
     name: variant_name[i],
     item: data.id,
     variant_price: Number(variant_price[i].replace(/\./g, "")),
   }));
-  const { data:variantdata, error:varianterror } = await supabase.from("variant").insert(allvariant);
-  console.log(varianterror)
+  const { data: variantdata, error: varianterror } = await supabase
+    .from("variant")
+    .insert(allvariant);
   const upload = await supabaseforimage.upload(`shop/${finalname}`, image);
   revalidatePath("/admin/shop");
   revalidatePath("/admin/shop/create");
   revalidatePath("/shop");
+  return { success: true, message: finalname_variant };
 }
