@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 import convertToMoney from "@/function/convert";
 import imageurl from "@/lib/imageurl";
 import userid, { userimage } from "@/lib/userid";
+import { cn } from "@/lib/utils";
 import supabase from "@/supabase/supabase";
 import { Archive } from "lucide-react";
 import Image from "next/image";
@@ -31,7 +32,7 @@ export default async function page() {
             <Navbar addcontext={"checkout"} />
             <Toaster closeButton />
             <div className="w-full h-screen flex flex-col lg:flex-row items-center py-3 gap-4" >
-                <div className="w-full lg:w-1/2 h-full px-4" >
+                <div className={cn("w-full h-full px-4", data.length <= 0 ? "lg:w-full"  : "lg:w-1/2 " )}>
                     <Card className={` h-max`} >
                         <CardHeader className={`text-md lg:text-lg  font-semibold`} >Order summary</CardHeader>
                         <Separator />
@@ -54,9 +55,9 @@ export default async function page() {
                         </CardFooter>}
                     </Card>
                 </div>
-                <div className="lg:w-1/2 w-full h-full px-4" >
+                {!data.length <= 0 && <div className="lg:w-1/2 w-full h-full px-4" >
                     <Pricedefault itemarray={allid} price={totalprice} itemprice={allprice} itemaname={allname.join(" | ")} variantarray={allvariant} />
-                </div>
+                </div>}
             </div>
         </main>
     )

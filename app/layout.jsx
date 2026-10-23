@@ -3,7 +3,6 @@ import "./globals.css";
 import Footnav from "@/components/footnav";
 import { ThemeProvider } from "@/components/themeprovider";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import Sidebarnav from "@/components/admin/sidebarnav";
 import userid from "@/lib/userid";
 const inter = Inter()
 export const metadata = {

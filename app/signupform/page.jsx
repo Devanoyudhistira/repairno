@@ -7,11 +7,11 @@ import userid from "@/lib/userid";
 import { createClient } from "@/supabase/server";
 import { Chewy } from "next/font/google";
 import { redirect } from "next/navigation";
-const bubble = Chewy({weight:"400"})
+const bubble = Chewy({ weight: "400" })
 
 export default async function Page() {
     const supabaseauth = await createClient()
-    const {data} = await supabaseauth.auth.getSession()
+    const { data } = await supabaseauth.auth.getSession()
     if(!data?.session){
         redirect("/sign-up")
     }    
@@ -21,15 +21,14 @@ export default async function Page() {
     return <main className="w-screen h-[95vh] overflow-hidden flex flex-col gap-5 items-center justify-end" >
         <h1 className={`text-secondary  ${bubble.className} -mt-8`} > <span className="text-6xl tracking-wider" > DevaCom </span> </h1>
         <form className="w-full flex flex-col rounded-t-3xl items-center mb-10 h-[75%] bg-accent-foreground justify-start px-3" action={createuser} >
-            <Profileimageinput/>
             <FieldGroup className={`m-0 *:gap-1 *:text-accent *:px-5  p-0 gap-2 mt-5 items-center`} >
-                <FieldLegend className={` font-semibold text-secondary `} > <span className="text-3xl" > Buat identitas anda </span> </FieldLegend>
+                <FieldLegend className={` font-semibold text-secondary `} > <span className="text-3xl" > Create your profile </span> </FieldLegend>
                 <Field className={`m-0`} >
-                    <FieldLabel htmlFor="username" className={"text-secondary text-xl font-semibold"} > nama anda </FieldLabel>
+                    <FieldLabel htmlFor="username" className={"text-secondary text-xl font-semibold"} > Your name </FieldLabel>
                     <Input id="username" name="username" placeholder="nama anda" className={`border-secondary`} />
-                </Field>                
+                </Field>
                 <Field className={``} >
-                    <FieldLabel htmlFor="nomer-hp" className={"text-secondary text-xl font-semibold"} > nomor yang masih aktif </FieldLabel>
+                    <FieldLabel htmlFor="nomer-hp" className={"text-secondary text-xl font-semibold"} > Active phone number </FieldLabel>
                     <Input id="nomer-hp" type={"number"} name="userphone" placeholder="nomor hp anda" className={`border-secondary`} />
                 </Field>
             </FieldGroup>

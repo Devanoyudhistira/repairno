@@ -14,8 +14,10 @@ import Profilenav from "./profile-nav"
 export default async function Navbar({ singlepage, addcontext }) {
     const supabaseauth = await createClient()
     const isadmin = await supabaseauth.auth.getSession()
+    const userdata = await supabaseauth.auth.getUser()
     const admin = isadmin.data.session
     const realadmin = await useradmin()
+    const userprofile = userdata.data.user.identities[0].identity_data.avatar_url
     console.log(realadmin)
     const profileimage = await userimage()
     return (<nav className="w-full h-14 border-secondary border-b-2 flex items-center justify-between px-3" >
@@ -30,7 +32,7 @@ export default async function Navbar({ singlepage, addcontext }) {
             <Profilenav profileimage={profileimage} /> :
             <div>
                 {!admin && <Link href={"/sign-up"} className="text-2xl font-medium text-secondary" > Login </Link>}
-                {admin ? <Navadmin /> : <Modetoggle />}
+                {admin ? <Navadmin profileimage={userprofile} imageprofile={profileimage} /> : <Modetoggle />}
             </div>}
     </nav>)
 }
