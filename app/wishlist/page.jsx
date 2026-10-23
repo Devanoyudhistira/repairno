@@ -13,18 +13,18 @@ export default async function page(params) {
     return (
         <>
             <Toaster />
+            <Navbar />
+            {data.length <= 0 &&
+                <div className=" flex flex-col items-center justify-center" >
+                    <Archive className={"size-13 lg:size-30"} />
+                    <h1 className="text-xl lg:text-3xl font-semibold capitalize" > you have no wishlist </h1>
+                </div>
+
+            }
             <main className="w-full px-3 grid gap-x-4 gap-y-3 mt-2 grid-cols-2 lg:grid-cols-4 md:grid-cols-3" >
-                <Navbar/>
-                {!data.length <= 0 ?
-                    <div className="w-screen h-screen flex flex-col items-center justify-center" >
-                        <Archive className={"size-13 lg:size-30"} />
-                        <h1 className="text-xl lg:text-3xl font-semibold capitalize" > you have no wishlist </h1>
-                    </div>
-                    :
-                    data.map(e =>
-                        <Productcard authincated={user_id} stock={e.item.stock} id={e.item.id} key={e.item.id} wishlist={true} productname={e.item.name} image={e.item.gambar} harga={e.item.price} />
-                    )
-                }
+                {data.length >= 0 && data.map(e =>
+                    <Productcard authincated={user_id} stock={e.item.stock} id={e.item.id} key={e.item.id} wishlist={true} productname={e.item.name} image={e.item.gambar} harga={e.item.price} />
+                )}
             </main>
         </>
     )
